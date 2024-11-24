@@ -1,4 +1,8 @@
+#define TX_COMPILED
+#include "..\SuperLibs\TXLib.h"
+
 #include <stdio.h>
+#include <math.h>
 #include "..\Processor\Onegin_for_proc\Onegin_processing.h"
 #include "..\Processor\Onegin_for_proc\Onegin_General.h"
 //#include "..\Akinator\akinator.h"
@@ -12,10 +16,20 @@ extern FILE* Graph_File_Utf8;
 int main (int argc, char* argv[])
 {
     Diff_init (argc, argv);
-    //Create_node (OP, DIV, Create_node (OP, ADD,  _NUM(30), _NUM(150)), Create_node (OP, SUB, _NUM(12),_X));
-    Create_node (OP, SUB, _NUM(12),_X);
-    
+    //node* nod_root = Create_node (OP, DIV, Create_node (OP, ADD,  _NUM(30), _NUM(150)), Create_node (OP, SUB, _NUM(12),_X));
+    //node* nod = Create_node (OP, SUB, _NUM(12),_X);
+    node* nod  = _NUM(333);
+    node* nodx = _X;
+    node* nodsum =  Create_node (OP, ADD, nod, nodx);
+    //Dump_akin (nod, nod);
 
+    $(nod);    $(nod-> val);  $((int) nod-> type);  $(nod-> left);  $(nod-> right);
+    putchar('\n');
+    $(nodx);   $(nodx-> val);  $((int) nodx-> type);  $(nodx-> left);  $(nodx-> right);
+    putchar('\n');
+    $(nodsum); $(nodsum-> val);  $((int) nodsum-> type);  $(nodsum-> left);  $(nodsum-> right);
+    
+    
 
 }
 //==================================================================================================
@@ -24,9 +38,11 @@ node* Create_node (type_t type, double data, node* node_left, node* node_right)
     node* new_node = (node *) calloc (1, sizeof (node));
     if (!new_node) {fprintf (Log_File, "Error!"); assert (new_node);}
 
-    new_node -> type = type;
-    new_node -> val = data;
-    
+    new_node -> type  = type;
+    new_node -> val   = data;
+    new_node -> left  = node_left;
+    new_node -> right = node_right;
+
     return new_node;
 }
 //==================================================================================================
@@ -41,16 +57,15 @@ int Dump_akin (node* node_, node* new_node)
     if (!node_) return 1;
     assert (new_node);
 
-    Graph_File = Create_file ("Dot.txt");
+    Graph_File      = Create_file ("Dot.txt");
     Graph_File_Utf8 = Create_file ("Dot_UTF-8.txt");
 
     static size_t number_pic = 1;
     
-    
     char* name_cmd = (char*) calloc (64, sizeof (char));
     char* name_pic = (char*) calloc (16, sizeof (char));
 
-    snprintf (name_cmd, 64, "dot Dot_UTF-8.txt -Tsvg -o Picture_tree/tree_%zu.svg", number_pic);
+    snprintf (name_cmd, 64, "dot Dot_UTF-8.txt -Tsvg -o Diff_tree/tree_%zu.svg", number_pic);
     snprintf (name_pic, 16, "tree_%zu.svg", number_pic);
 
     Dump_graph_init (node_, new_node);
@@ -58,10 +73,10 @@ int Dump_akin (node* node_, node* new_node)
     Close_File (Graph_File);
     Close_File (Graph_File_Utf8);
 
-    system ("D:\\РџСЂРёР»РѕР¶РµРЅРёСЏ\\iconv\\gettext-iconv\\bin\\iconv.exe -f CP1251 -t UTF-8 Dot.txt > Dot_UTF-8.txt");
+    system ("D:\\Приложения\\iconv\\gettext-iconv\\bin\\iconv.exe -f CP1251 -t UTF-8 Dot.txt > Dot_UTF-8.txt");
     system (name_cmd);
 
-    fprintf (Log_File ,"\n<img src = \"Picture_tree/%s\" width = %d%%>\n\n\n\n\n\n\n\n\n\n", name_pic, SCALE);
+    fprintf (Log_File ,"\n<img src = \"Diff_tree/%s\" width = %d%%>\n\n\n\n\n\n\n\n\n\n", name_pic, SCALE);
     fflush (Graph_File);
     ++number_pic;
     
@@ -82,8 +97,8 @@ void Dump_graph_init (node* node_, node* new_node)
 
     Dump_graph_recursive (node_, 1);
 
-    fprintf(Graph_File, "\n"   
-            "\tnode_%p [ fillcolor = \"#ffa615\"];\n", new_node);
+   /* fprintf(Graph_File, "\n"   
+            "\tnode_%p [ fillcolor = \"#ffa615\"];\n", new_node); */
 
     fprintf (Graph_File, "}");
 }

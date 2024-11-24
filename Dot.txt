@@ -1,0 +1,37 @@
+digraph
+{
+	rankdir = TB;
+	node [ color = "#004b00", shape = "rectangle", style = "filled", fillcolor = "#a2f8a4"];
+	edge [ color = "#004b00", fontsize = 16];
+
+	node0000026c120060b0 [ shape = "Mrecord", label = "{ data = 333.000000 \n addr: 0000026c120060b0 | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
+	{
+		node[ color = "#58184PE", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
+		edge[ color = "white"]
+		"1" ->  "2";
+	}
+
+	{ rank = 1; "1"; "node0000026c120060b0" }
+
+	{
+		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
+		edge [ color = "#007cff", fontsize = 16];
+
+		node_l_null_0000026c120060b0[ shape = "ellipse", label = "null" ];
+		node_0000026c120060b0  -> node_l_null_0000026c120060b0;
+	}
+
+	{
+		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
+		edge [ color = "#007cff", fontsize = 16];
+
+		node_r_null_0000026c120060b0 [shape = "ellipse", label = " null" ];
+		node_0000026c120060b0  -> node_r_null_0000026c120060b0;
+	}
+	{
+		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
+		edge[ color = "white"]
+		"1" ->  "2";
+	}
+
+}

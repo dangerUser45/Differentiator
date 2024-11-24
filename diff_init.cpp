@@ -15,7 +15,7 @@ FILE* Create_file (const char* name_of_file);
 diff*  Diff_init (int argc ,char* argv[])
 {
 
-    Log_File = Create_file ("LOG_AKINATOR.html");        //!!!    
+    Log_File = Create_file ("LOG_DIFF.html");        //!!!    
     fprintf (Log_File, "<pre>");
 
     diff* diff_data = (diff*) calloc (1, sizeof (diff));
