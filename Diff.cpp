@@ -16,21 +16,13 @@ extern FILE* Graph_File_Utf8;
 int main (int argc, char* argv[])
 {
     Diff_init (argc, argv);
-    //node* nod_root = Create_node (OP, DIV, Create_node (OP, ADD,  _NUM(30), _NUM(150)), Create_node (OP, SUB, _NUM(12),_X));
-    //node* nod = Create_node (OP, SUB, _NUM(12),_X);
-    node* nod  = _NUM(333);
-    node* nodx = _X;
-    node* nodsum =  Create_node (OP, ADD, nod, nodx);
-    //Dump_akin (nod, nod);
-
-    $(nod);    $(nod-> val);  $((int) nod-> type);  $(nod-> left);  $(nod-> right);
-    putchar('\n');
-    $(nodx);   $(nodx-> val);  $((int) nodx-> type);  $(nodx-> left);  $(nodx-> right);
-    putchar('\n');
-    $(nodsum); $(nodsum-> val);  $((int) nodsum-> type);  $(nodsum-> left);  $(nodsum-> right);
+    node* nod_root = Create_node (OP, DIV, Create_node (OP, ADD,  _NUM(30), _NUM(150)), Create_node (OP, SUB, _NUM(12),_X));
+    node* node__   = Create_node (OP, DIV, Create_node (OP, ADD, _X, _NUM(3)), Create_node (OP, SUB, _X, _NUM(2)));
     
-    
+    Dump_akin (nod_root, nod_root);
+    Dump_akin (node__, nod_root);
 
+    Read_equation ();
 }
 //==================================================================================================
 node* Create_node (type_t type, double data, node* node_left, node* node_right)
@@ -90,62 +82,36 @@ void Dump_graph_init (node* node_, node* new_node)
 {
     fprintf (Graph_File, "digraph\n" 
     "{\n"
+    "\trankdir = TB;\n\n");
     
-    "\trankdir = TB;\n"
-        "\tnode [ color = \"#004b00\", shape = \"rectangle\", style = \"filled\", fillcolor = \"#a2f8a4\"];\n"
-        "\tedge [ color = \"#004b00\", fontsize = 16];\n\n");
-
     Dump_graph_recursive (node_, 1);
 
-   /* fprintf(Graph_File, "\n"   
-            "\tnode_%p [ fillcolor = \"#ffa615\"];\n", new_node); */
-
+    /*fprintf(Graph_File, "\n"   
+        "\tnode_%p [ color = \"#d48608\", fillcolor = \"#ffa615\"];\n", new_node);*/
     fprintf (Graph_File, "}");
+
 }
 //==================================================================================================
-void Dump_graph_recursive (node* node_, size_t rank)
+
+void Dump_graph_recursive (node* node_diff, size_t rank)
 {
-    if (!node_) return;                                                                                                                    
-    
-    fprintf(Graph_File, ""
-        "\tnode%p [ shape = \"Mrecord\", label = \"{ data = %" TYPE " \\n addr: %p | { L:\\n addr: %p | R: \\n addr: %p } }\" ];\n", node_, node_ -> val, node_, node_ -> left, node_ -> right);
+    if (!node_diff) return;
+    Draw_tree (node_diff);
 
     fprintf (Graph_File, ""
         "\t{\n"                                                        
-            "\t\tnode[ color = \"#58184PE\", shape = \"circle\", style = \"filled\" ,fillcolor=\"#fe5656\"];\n"
+            "\t\tnode[ color = \"#581845\", shape = \"circle\", style = \"filled\" ,fillcolor=\"#fe5656\"];\n"
             "\t\tedge[ color = \"white\"]\n"
             "\t\t\"%zu\" ->  \"%zu\";\n", rank, rank + 1);
     
     fprintf (Graph_File,  "\t}\n\n"
-        "\t{ rank = %zu; \"%zu\"; \"node%p\" }\n", rank, rank, node_);
+        "\t{ rank = %zu; \"%zu\"; \"node_%p\" }\n", rank, rank, node_diff);
 
-    if (node_ -> left != NULL)
+    if (node_diff -> left != NULL)
     {
-        fprintf(Graph_File, "\n"
-        "\tnode%p[ shape = \"Mrecord\", label = \"{ data = %" TYPE "\\n addr: %p | { L:\\n addr: %p |   R: \\n addr: %p } }\" ];\n", node_ -> left,  node_ -> left -> val, node_ -> left, node_ -> left -> left, node_ -> left -> right);
-        fprintf (Graph_File, ""
-        "\tnode%p  -> node%p;\n", node_, node_ -> left);
-    } 
-    
-    else {
-        fprintf(Graph_File, "\n"
-        "\t{\n"
-            "\t\tnode [ color = \"#007cff\", shape = \"rectangle\", style = \"filled\", fillcolor = \"#a2f0f8\"];\n"
-            "\t\tedge [ color = \"#007cff\", fontsize = 16];\n\n"
-
-            "\t\tnode_l_null_%p[ shape = \"ellipse\", label = \"null\" ];\n", node_);
-        fprintf(Graph_File, ""
-            "\t\tnode_%p  -> node_l_null_%p;\n", node_, node_);
-        fprintf(Graph_File, ""
-            "\t}\n");
-        }  
-
-    if (node_ -> right != NULL)
-    {
-        fprintf(Graph_File, "\n"   
-            "\tnode_%p [ shape = \"Mrecord\", label = \" { data = %" TYPE "\\n addr: %p | { L:\\n addr: %p | R: \\n addr: %p } }\" ];", node_ -> right, node_ -> right -> val, node_ -> right, node_ -> right -> left, node_ -> right -> right);
-        fprintf(Graph_File, "\n"
-            "\tnode_%p  -> node_%p;\n", node_, node_ -> right);
+        Draw_tree (node_diff -> left);
+        fprintf (Graph_File, ""   //!!!
+        "\tnode_%p  -> node_%p [color = \"#ff0000\", fontsize = 16];\n", node_diff, node_diff -> left);
     }
 
     else {
@@ -154,26 +120,72 @@ void Dump_graph_recursive (node* node_, size_t rank)
             "\t\tnode [ color = \"#007cff\", shape = \"rectangle\", style = \"filled\", fillcolor = \"#a2f0f8\"];\n"
             "\t\tedge [ color = \"#007cff\", fontsize = 16];\n\n"
 
-            "\t\tnode_r_null_%p [shape = \"ellipse\", label = \" null\" ];\n", node_);
+            "\t\tnode_l_null_%p [shape = \"ellipse\", label = \" null\" ];\n", node_diff);
         
         fprintf(Graph_File, ""
-            "\t\tnode_%p  -> node_r_null_%p;\n", node_, node_);
+            "\t\tnode_%p  -> node_l_null_%p;\n", node_diff, node_diff);
+        fprintf(Graph_File, ""
+            "\t}\n");
+        }  
+
+    if (node_diff -> right != NULL)
+    {
+        Draw_tree (node_diff -> right);
+        fprintf(Graph_File, "\n" //!!!
+        "\tnode_%p  -> node_%p[color = \"#ff0000\", fontsize = 16];\n", node_diff, node_diff -> right);
+    }
+
+    else {
+        fprintf(Graph_File, "\n"
+        "\t{\n"
+            "\t\tnode [ color = \"#007cff\", shape = \"rectangle\", style = \"filled\", fillcolor = \"#a2f0f8\"];\n"
+            "\t\tedge [ color = \"#007cff\", fontsize = 16];\n\n"
+
+            "\t\tnode_r_null_%p [shape = \"ellipse\", label = \" null\" ];\n", node_diff);
+        
+        fprintf(Graph_File, ""
+            "\t\tnode_%p  -> node_r_null_%p;\n", node_diff, node_diff);
         fprintf(Graph_File, "" 
             "\t}\n");
           }
 
-        fprintf (Graph_File, ""
-        "\t{\n"                                                        
-            "\t\tnode[ shape = \"plaintext\", style = \"filled\" ,fillcolor=\"white\"];\n"
-            "\t\tedge[ color = \"white\"]\n"
-            "\t\t\"%zu\" ->  \"%zu\";\n", rank, rank + 1);
+    fprintf (Graph_File, ""
+    "\t{\n"                                                        
+        "\t\tnode[ shape = \"plaintext\", style = \"filled\" ,fillcolor=\"white\"];\n"
+        "\t\tedge[ color = \"white\"]\n"
+        "\t\t\"%zu\" ->  \"%zu\";\n", rank, rank + 1);
 
-        fprintf (Graph_File, ""
-        "\t}\n\n");
+    fprintf (Graph_File, ""
+    "\t}\n");
 
         ++rank;
 
-        Dump_graph_recursive (node_ -> left, rank);
-        Dump_graph_recursive (node_ -> right, rank);
+        Dump_graph_recursive (node_diff -> left, rank);
+        Dump_graph_recursive (node_diff -> right, rank);
+
 }
 //==================================================================================================
+void Draw_tree (node* node_diff)
+{
+     if (node_diff -> type == NUM){
+            fprintf(Graph_File, ""
+        "\tnode_%p [ color = \"#18ca1c\", style = \"filled\", fillcolor = \"#a2f8a4\", shape = \"Mrecord\", label = \"{ addr: %p | val = %" TYPE "  | type = %s | { L:\\n addr: %p | R: \\n addr: %p } }\" ];\n", node_diff, node_diff, node_diff -> val, "NUM", node_diff -> left, node_diff -> right);
+        }
+
+    else if (node_diff -> type == VAR){
+            fprintf(Graph_File, ""
+        "\tnode_%p [ color = \"#d408ac\", style = \"filled\", fillcolor = \"#ff5fe0\", shape = \"Mrecord\", label = \"{ addr: %p | val = \'%c\'| type = %s | { L:\\n addr: %p | R: \\n addr: %p } }\" ];\n", node_diff, node_diff, (char)node_diff -> val, "VAR", node_diff -> left, node_diff -> right);
+        }
+
+    else if (node_diff -> type == OP){
+        fprintf(Graph_File, ""
+        "\tnode_%p [ color = \"#ffc500\", style = \"filled\", fillcolor = \"#ecfd74\", shape = \"Mrecord\", label = \"{ addr: %p | val = \'%c\' |  type = %s | { L:\\n addr: %p | R: \\n addr: %p } }\" ];\n", node_diff, node_diff, (char)node_diff -> val, "OP", node_diff -> left, node_diff -> right);
+        }
+}
+//==================================================================================================
+void Read_equation ()
+{
+
+
+    ;
+}
