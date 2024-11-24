@@ -1,11 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "..\Processor\Onegin_for_proc\Onegin_processing.h"
 #include "..\Processor\Onegin_for_proc\Onegin_General.h"
 #include "..\Processor\Onegin_for_proc\Print.h"
 #include "Diff.h"
 
 FILE* Log_File;
+FILE* Graph_File;
+FILE* Graph_File_Utf8;
 
 FILE* Create_file (const char* name_of_file);
 
