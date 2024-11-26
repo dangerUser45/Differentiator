@@ -23,60 +23,64 @@ int main (int argc, char* argv[])
     Dump_tree (nod_root, nod_root);
     Dump_tree (node__, nod_root);
 
-    node* node_root = Read_equation (diff_data -> onegin -> buffer_addr);
+    node* node_root = Read_equation (diff_data -> onegin -> buffer_addr, 0);
     Dump_tree (node_root, node_root);
+    txDisableAutoPause ();  
 }
 //==================================================================================================
-node* Read_equation (char* buffer)
+node* Read_equation (char* buffer, node* node_diff)
 {
     assert (buffer);
-    DBG(static int i = 0;)
+    DBG(static int level_recursive = 0;)
 
-    DBG(printf ("Im in Read_equation (): Recursive level: %d\n", i);)
+    DBG( PRINT ("Im in Read_equation ():  I'm just getting started. Recursive level: %d", level_recursive);)
+    DBG(++level_recursive;)
+    node* node_diff_parent = 0;
    
-    if (*buffer != '(')
+    DBG(if ((level_recursive == 1) && (*buffer != '('))
         {fprintf (Log_File, "<font size = \"5\"><b>You  give me wrong file, f@cking nigga! </b></font>"); 
-        return 0;}
+        return 0;})
 
-    else 
+    else
     {
+        node* new_node = Check_and_Create (buffer);
         buffer = Skip_space (buffer + 1);
-        DBG(printf ("I skip space\n");)
-        $(*buffer);
 
-        if (*buffer == '(') {
-            buffer = Skip_space (buffer + 1);
-            Read_equation (buffer); }
+        if (new_node)
+        node* node_left = Check_and_Create (buffer);
 
-        val_t value = 0;
+        else {
+            /*Проверяем тип текста и создаём узел с этим value*/
+            val_t value = 0;
 
-        if (sscanf (buffer, "%" TYPE "", &value) == 1) {          
-            node* node_diff = Create_node (NUM, value, 0, 0);
-            printf ("here\n");  
-            return node_diff;}
+            if (sscanf (buffer, "%" TYPE "", &value) == 1)
+            {          
+                node* node_diff_val= Create_node (NUM, value, 0, 0);
+                        DBG(PRINT ("I create_node, his addr = %p", node_diff_val);)
+                node_diff -> left = node_diff_val;
+                buffer = strchr (buffer, ')');
+                        DBG(PRINT ("I move to )");)
+                        DBG(PRINT ("*buffer = %.20s", buffer);)
+                return 0;
+            }
 
+            /*else if (isalpha (*buffer) && isalpha (*(buffer + 1))) 
+                Create_node (VAR, *buffer, 0, 0);
 
-        /*else if (isalpha (*buffer) && isalpha (*(buffer + 1))) 
-            Create_node (VAR, *buffer, 0, 0);
+            else
+                Create_node (OP, *buffer, 0, 0);*/
+            }
 
-        else
-            Create_node (OP, *buffer, 0, 0);*/
-
-        if (*buffer == ')') {buffer = Skip_space (buffer + 1); return }
-
-
-        /*
-        buffer = strchr (buffer, '(');                               //Moved at 1 brackets        
-        buffer = Skip_space (buffer + 1);
-        char* quote_pos_end = strchr (buffer, ')');
-        *quote_pos_end = '\0';
-        */
-
-
-        //snprintf (name_left, LENGTH, "%s");
-        //Read_equation (buffer); 
-        return 0;                                    //processing left subtree  
+                                         
     }
+}
+//==================================================================================================
+node* Check_and_Create (char* buffer)
+{
+    node* new_node = 0;
+    if (*buffer == '(') 
+        return  new_node = Create_node (OP, 0, 0, 0);
+    return 0;
 }
 //==================================================================================================
 char* Skip_space (const char* ptr) 
