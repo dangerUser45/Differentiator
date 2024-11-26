@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <math.h>
+#include <ctype.h>
 #include "..\Processor\Onegin_for_proc\Onegin_processing.h"
 #include "..\Processor\Onegin_for_proc\Onegin_General.h"
 //#include "..\Akinator\akinator.h"
@@ -15,14 +16,77 @@ extern FILE* Graph_File_Utf8;
 //==================================================================================================
 int main (int argc, char* argv[])
 {
-    Diff_init (argc, argv);
+    diff* diff_data = Diff_init (argc, argv);
     node* nod_root = Create_node (OP, DIV, Create_node (OP, ADD,  _NUM(30), _NUM(150)), Create_node (OP, SUB, _NUM(12),_X));
     node* node__   = Create_node (OP, DIV, Create_node (OP, ADD, _X, _NUM(3)), Create_node (OP, SUB, _X, _NUM(2)));
     
-    Dump_akin (nod_root, nod_root);
-    Dump_akin (node__, nod_root);
+    Dump_tree (nod_root, nod_root);
+    Dump_tree (node__, nod_root);
 
-    Read_equation ();
+    node* node_root = Read_equation (diff_data -> onegin -> buffer_addr);
+    Dump_tree (node_root, node_root);
+}
+//==================================================================================================
+node* Read_equation (char* buffer)
+{
+    assert (buffer);
+    DBG(static int i = 0;)
+
+    DBG(printf ("Im in Read_equation (): Recursive level: %d\n", i);)
+   
+    if (*buffer != '(')
+        {fprintf (Log_File, "<font size = \"5\"><b>You  give me wrong file, f@cking nigga! </b></font>"); 
+        return 0;}
+
+    else 
+    {
+        buffer = Skip_space (buffer + 1);
+        DBG(printf ("I skip space\n");)
+        $(*buffer);
+
+        if (*buffer == '(') {
+            buffer = Skip_space (buffer + 1);
+            Read_equation (buffer); }
+
+        val_t value = 0;
+
+        if (sscanf (buffer, "%" TYPE "", &value) == 1) {          
+            node* node_diff = Create_node (NUM, value, 0, 0);
+            printf ("here\n");  
+            return node_diff;}
+
+
+        /*else if (isalpha (*buffer) && isalpha (*(buffer + 1))) 
+            Create_node (VAR, *buffer, 0, 0);
+
+        else
+            Create_node (OP, *buffer, 0, 0);*/
+
+        if (*buffer == ')') {buffer = Skip_space (buffer + 1); return }
+
+
+        /*
+        buffer = strchr (buffer, '(');                               //Moved at 1 brackets        
+        buffer = Skip_space (buffer + 1);
+        char* quote_pos_end = strchr (buffer, ')');
+        *quote_pos_end = '\0';
+        */
+
+
+        //snprintf (name_left, LENGTH, "%s");
+        //Read_equation (buffer); 
+        return 0;                                    //processing left subtree  
+    }
+}
+//==================================================================================================
+char* Skip_space (const char* ptr) 
+{
+    while (1)
+        if (*ptr == ' ' || *ptr == '\t' || *ptr == '\r' || *ptr == '\n' )
+            ++ptr;
+        else break;
+    
+    return (char*) ptr;
 }
 //==================================================================================================
 node* Create_node (type_t type, double data, node* node_left, node* node_right)
@@ -44,7 +108,7 @@ void Close_File (FILE* file)
     return;
 }
 //==================================================================================================
-int Dump_akin (node* node_, node* new_node)
+int Dump_tree (node* node_, node* new_node)
 {
     if (!node_) return 1;
     assert (new_node);
@@ -183,9 +247,3 @@ void Draw_tree (node* node_diff)
         }
 }
 //==================================================================================================
-void Read_equation ()
-{
-
-
-    ;
-}
