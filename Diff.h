@@ -41,6 +41,7 @@ ONEGIN* onegin;
         n += fprintf (stderr, "%*s", 100 - n, "");                               \
              fprintf (stderr, "buffer: \'%.25s\'   addr:%p\n", buffer, buffer);  \
 }                                       
+#define MOVE_PTR buffer = Skip_space (buffer + 1);
 
 
 FILE* Create_file (const char* name_of_file);

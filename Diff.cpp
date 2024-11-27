@@ -35,33 +35,42 @@ node* Read_equation (char* buffer, node* node_diff)
 
     DBG( PRINT ("Im in Read_equation ():  I'm just getting started. Recursive level: %d", level_recursive);)
     DBG(++level_recursive;)
-    node* node_diff_parent = 0;
    
     DBG(if ((level_recursive == 1) && (*buffer != '('))
-        {fprintf (Log_File, "<font size = \"5\"><b>You  give me wrong file, f@cking nigga! </b></font>"); 
+        {fprintf (Log_File, "<font size = \"5\"><b>You  give me wrong file, f@cking nigga! </b></font>");
         return 0;})
 
     else
-    {
-        node* new_node = Check_and_Create (buffer);
-        buffer = Skip_space (buffer + 1);
+    {      
+        node* new_node = 0;
+        node* node_parent = 0;
+        val_t value = 0;
 
-        if (new_node)
-        node* node_left = Check_and_Create (buffer);
 
-        else {
-            /*Проверяем тип текста и создаём узел с этим value*/
-            val_t value = 0;
+        if (*buffer == '(') {
+            node_parent = Create_node (OP, 0, 0, 0);
+                DBG(PRINT ("I create_node, his addr = %p. Soon will move ptr", new_node);)
+            MOVE_PTR;}
 
-            if (sscanf (buffer, "%" TYPE "", &value) == 1)
+            if (*buffer == '(')
+            {
+                MOVE_PTR;
+                DBG(PRINT ("I moved buffer. Soon will call a Read_equation ()");)
+                node* new_node = Read_equation (buffer, node_parent);
+                node_parent -> left =  new_node;
+                
+            } 
+
+            else if (sscanf (buffer, "%" TYPE "", &value) == 1)
             {          
                 node* node_diff_val= Create_node (NUM, value, 0, 0);
                         DBG(PRINT ("I create_node, his addr = %p", node_diff_val);)
-                node_diff -> left = node_diff_val;
                 buffer = strchr (buffer, ')');
                         DBG(PRINT ("I move to )");)
                         DBG(PRINT ("*buffer = %.20s", buffer);)
-                return 0;
+                node_diff -> type = NUM;
+                return node_diff_val;
+
             }
 
             /*else if (isalpha (*buffer) && isalpha (*(buffer + 1))) 
@@ -69,10 +78,11 @@ node* Read_equation (char* buffer, node* node_diff)
 
             else
                 Create_node (OP, *buffer, 0, 0);*/
-            }
+        }
+             
 
                                          
-    }
+    
 }
 //==================================================================================================
 node* Check_and_Create (char* buffer)
