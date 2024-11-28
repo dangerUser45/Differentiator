@@ -67,16 +67,10 @@ node* GetTerm ()
 //==================================================================================================
 node* GetPrime ()
 {
-    node* node_val = 0;
-    if (string[pointer] == '(')
-    {
-        pointer++;
-        node_val = GetExpression ();
-        if (string[pointer] != ')')
-            SyntaxError ();
-        pointer++;
+    node* node_val = GetBracketEx ();
+    if (node_val) 
         return node_val;
-    }
+
     else if (string[pointer] == 'x')
         return GetVar ();
 
@@ -85,6 +79,43 @@ node* GetPrime ()
             return node_val;      
         else 
             return GetNumber ();
+}
+//==================================================================================================
+node* GetBracketEx ()
+{
+   if (string[pointer] == '(')
+    {
+        pointer++;
+        node* node_val = GetExpression ();
+        if (string[pointer] != ')')
+            SyntaxError ();
+        pointer++;
+        return node_val;
+    }
+    else return 0;
+}
+//==================================================================================================
+node* GetVar ()
+{
+    pointer++;
+    node* node_var = _X;
+    
+    return node_var;
+}
+//==================================================================================================
+node* GetTrigonometry ()
+{
+    if (string[pointer] == 'c')  {
+    pointer++;
+    node* node = GetBracketEx ();
+    return _COS(node);           }
+
+    else if (string[pointer] == 's') {
+    pointer++;
+    node* node = GetBracketEx ();
+    return _SIN(node);               }
+
+    else return 0;
 }
 //==================================================================================================
 node* GetNumber()
@@ -99,44 +130,6 @@ node* GetNumber()
     if (old_pointer == pointer) SyntaxError ();
 
     return Create_node (NUM, val, 0, 0);
-}
-//==================================================================================================
-node* GetVar ()
-{
-    pointer++;
-    node* node_var = _X;
-    
-    return node_var;
-}
-//==================================================================================================
-node* GetTrigonometry ()
-{
-    if (string[pointer] == 'c')              {
-    pointer++;
-    node* node = GetBracketEx ();
-    return _COS(node);                       }
-
-    else if (string[pointer] == 's')         {
-    pointer++;
-    node* node = GetBracketEx ();
-    return _SIN(node);                       }
-
-    else return 0;
-}
-//==================================================================================================
-node* GetBracketEx ()
-{
-   if (string[pointer] == '(')
-    {
-        pointer++;
-        node* node_val = GetExpression ();
-        if (string[pointer] != ')')
-            SyntaxError ();
-        pointer++;
-        return node_val;
-    }
-    else SyntaxError;
-    return 0;
 }
 //==================================================================================================
 void SyntaxError ()

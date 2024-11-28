@@ -2,3 +2,6 @@
 *.o
 *.log
 *.dmp
+*.html
+*.txt
+/Diff_tree
