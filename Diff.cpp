@@ -6,8 +6,7 @@
 #include <ctype.h>
 #include "..\Processor\Onegin_for_proc\Onegin_processing.h"
 #include "..\Processor\Onegin_for_proc\Onegin_General.h"
-//#include "..\Akinator\akinator.h"
-#include "Diff.h" 
+#include "Recursive_descent.h"
 
 extern FILE* Log_File;
 extern FILE* Graph_File;
@@ -17,14 +16,11 @@ extern FILE* Graph_File_Utf8;
 int main (int argc, char* argv[])
 {
     diff* diff_data = Diff_init (argc, argv);
-    node* nod_root = Create_node (OP, DIV, Create_node (OP, ADD,  _NUM(30), _NUM(150)), Create_node (OP, SUB, _NUM(12),_X));
-    node* node__   = Create_node (OP, DIV, Create_node (OP, ADD, _X, _NUM(3)), Create_node (OP, SUB, _X, _NUM(2)));
-    
-    Dump_tree (nod_root, nod_root);
-    Dump_tree (node__, nod_root);
+    diff_data ->onegin->buffer_addr;
 
-    node* node_root = Read_equation (diff_data -> onegin -> buffer_addr, 0);
-    Dump_tree (node_root, node_root);
+    node* result =  GetGrammatic(diff_data ->onegin->buffer_addr);  
+    Dump_tree (result, result);
+
     txDisableAutoPause ();  
 }
 //==================================================================================================
@@ -260,4 +256,4 @@ void Draw_tree (node* node_diff)
         "\tnode_%p [ color = \"#ffc500\", style = \"filled\", fillcolor = \"#ecfd74\", shape = \"Mrecord\", label = \"{ addr: %p | val = \'%c\' |  type = %s | { L:\\n addr: %p | R: \\n addr: %p } }\" ];\n", node_diff, node_diff, (char)node_diff -> val, "OP", node_diff -> left, node_diff -> right);
         }
 }
-//==================================================================================================
+//=================================================================================================

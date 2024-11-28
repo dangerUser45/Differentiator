@@ -5,8 +5,8 @@ Target   = diff
 
 #-----------------------------------------------------------------------
 
-$(Target):      $(B)Diff.o $(B)Diff_init.o $(B)TXLib.o $(B)Print.o $(B)Processing.o
-	$(Compiler) $(B)Diff.o $(B)Diff_init.o $(B)TXLib.o $(B)Print.o $(B)Processing.o -o diff.exe
+$(Target):      $(B)Diff.o $(B)Diff_init.o $(B)Recursive_descent.o $(B)TXLib.o $(B)Print.o $(B)Processing.o
+	$(Compiler) $(B)Diff.o $(B)Diff_init.o $(B)Recursive_descent.o $(B)TXLib.o $(B)Print.o $(B)Processing.o -o diff.exe
 #-----------------------------------------------------------------------
 
 $(B)Diff.o : Diff.cpp                                            \
@@ -22,6 +22,12 @@ $(B)Diff_init.o : diff_init.cpp                                  \
 				..\Processor\Onegin_for_proc\Onegin_General.h    \
 				..\Processor\Onegin_for_proc\Print.h
 	$(Compiler) -c diff_init.cpp -o $(B)diff_init.o
+
+$(B)Recursive_descent.o: Recursive_descent.cpp                   \
+				Diff.h                                           \
+				Recursive_descent.h
+	$(Compiler) -c Recursive_descent.cpp -o $(B)Recursive_descent.o
+
 
 $(B)Print.o : ../Processor/Onegin_for_proc/Print.cpp             \
 		      ../Processor/Onegin_for_proc/Onegin_General.h      \
