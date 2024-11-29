@@ -3,7 +3,7 @@
 #include "..\Processor\Onegin_for_proc\Onegin_General.h" 
 
 enum type_t     {NUM = 1, VAR, OP};
-enum operations {ADD = '+', SUB = '-', MUL = '*', DIV = '/', COS = 'c', SIN = 's'};
+enum operations {ADD = '+', SUB = '-', MUL = '*', DIV = '/', COS = 'c', SIN = 's', POW = '^'};
 
 #define _NUM(val) Create_node (NUM, val, NULL, NULL)
 #define _X Create_node (VAR, 'x', NULL, NULL)
@@ -14,6 +14,7 @@ enum operations {ADD = '+', SUB = '-', MUL = '*', DIV = '/', COS = 'c', SIN = 's
 #define _DIV(val1, val2) Create_node (OP, DIV, val1, val2)
 #define _COS(val)        Create_node (OP, COS, val, 0)
 #define _SIN(val)        Create_node (OP, SIN, val, 0)
+#define _POW(val1, val2) Create_node (OP, POW, val1, val2)
 
 #define TYPE "lg"
 #define SCALE 50

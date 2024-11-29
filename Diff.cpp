@@ -7,6 +7,7 @@
 #include "..\Processor\Onegin_for_proc\Onegin_processing.h"
 #include "..\Processor\Onegin_for_proc\Onegin_General.h"
 #include "Recursive_descent.h"
+#include "Eval.h"
 
 extern FILE* Log_File;
 extern FILE* Graph_File;
@@ -18,8 +19,11 @@ int main (int argc, char* argv[])
     diff* diff_data = Diff_init (argc, argv);
     diff_data ->onegin->buffer_addr;
 
-    node* result =  GetGrammatic(diff_data ->onegin->buffer_addr);  
-    Dump_tree (result, result);
+    node* node_root =  GetGrammatic(diff_data ->onegin->buffer_addr); 
+    Dump_tree (node_root, node_root);
+
+    val_t result = Eval (node_root);
+    printf ("result = %" TYPE "\n", result);
 
     txDisableAutoPause ();  
 }

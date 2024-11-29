@@ -5,8 +5,8 @@ Target   = diff
 
 #-----------------------------------------------------------------------
 
-$(Target):      $(B)Diff.o $(B)Diff_init.o $(B)Recursive_descent.o $(B)TXLib.o $(B)Print.o $(B)Processing.o
-	$(Compiler) $(B)Diff.o $(B)Diff_init.o $(B)Recursive_descent.o $(B)TXLib.o $(B)Print.o $(B)Processing.o -o diff.exe
+$(Target):      $(B)Diff.o $(B)Diff_init.o $(B)Recursive_descent.o $(B)Eval.o $(B)TXLib.o $(B)Print.o $(B)Processing.o
+	$(Compiler) $(B)Diff.o $(B)Diff_init.o $(B)Recursive_descent.o $(B)Eval.o $(B)TXLib.o $(B)Print.o $(B)Processing.o -o diff.exe
 #-----------------------------------------------------------------------
 
 $(B)Diff.o : Diff.cpp                                            \
@@ -27,6 +27,11 @@ $(B)Recursive_descent.o: Recursive_descent.cpp                   \
 				Diff.h                                           \
 				Recursive_descent.h
 	$(Compiler) -c Recursive_descent.cpp -o $(B)Recursive_descent.o
+
+$(B)Eval.o : Eval.cpp                                            \
+			 Eval.h                                              \
+			 Diff.h 
+	$(Compiler) -c Eval.cpp -o $(B)Eval.o
 
 
 $(B)Print.o : ../Processor/Onegin_for_proc/Print.cpp             \
