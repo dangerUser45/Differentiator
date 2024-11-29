@@ -1,5 +1,5 @@
 #include <math.h>
-#include "Diff.h"
+#include "Diff_Common.h"
 #include "Eval.h"
 
 val_t Eval (node* node)

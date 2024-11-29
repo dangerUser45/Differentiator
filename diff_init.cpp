@@ -4,7 +4,7 @@
 #include "..\Processor\Onegin_for_proc\Onegin_processing.h"
 #include "..\Processor\Onegin_for_proc\Onegin_General.h"
 #include "..\Processor\Onegin_for_proc\Print.h"
-#include "Diff.h"
+#include "Diff_init.h"
 
 FILE* Log_File;
 FILE* Graph_File;
@@ -49,5 +49,11 @@ FILE* Create_file (const char* name_of_file)
     setvbuf (file, 0, 0, _IONBF);
 
     return file;
+}
+//==================================================================================================
+void Close_File (FILE* file)
+{
+    if (file) fclose (file); 
+    return;
 }
 //==================================================================================================

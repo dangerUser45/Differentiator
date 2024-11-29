@@ -1,6 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "diff.h"
+
+#include "Diff.h"
 #include "Recursive_descent.h"
 
 static node* GetExpression ();
