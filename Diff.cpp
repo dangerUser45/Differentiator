@@ -186,9 +186,24 @@ void Const_Folding (node* Node)
     if (!Node) return;
 
     if (Node -> type == VAR) return;
-    else if (!Var_Count_Envelope (Node)) Eval(Node);
-
+    else if (!Var_Count_Envelope (Node))
+    {
+        val_t value = Eval (Node);
+        node* New_node = Create_node (NUM, value, 0, 0);
+        
+        //Del_tree (Node);
+    }
+    
     Const_Folding (Node -> left);
     Const_Folding (Node -> right);
+}
+//==================================================================================================
+void Del_tree (node* Node)
+{
+    if (Node) free (Node);
+    else return;
+
+    Del_tree (Node -> left);
+    Del_tree (Node -> right);
 }
 //==================================================================================================

@@ -2,644 +2,221 @@ digraph
 {
 	rankdir = TB;
 
-	node_0000025c86f59a90 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f59a90 | val = '/' |  type = OP | { L:\n addr: 0000025c86f5a000 | R: \n addr: 0000025c86f596e0 } }" ];
+	node_000001b34e7561f0 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 000001b34e7561f0 | val = '*' |  type = OP | { L:\n addr: 000001b34e756f60 | R: \n addr: 000001b34e7561c0 } }" ];
 	{
 		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
 		edge[ color = "white"]
 		"1" ->  "2";
 	}
 
-	{ rank = 1; "1"; "node_0000025c86f59a90" }
-	node_0000025c86f5a000 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f5a000 | val = '-' |  type = OP | { L:\n addr: 0000025c86f59a60 | R: \n addr: 0000025c86f59770 } }" ];
-	node_0000025c86f59a90  -> node_0000025c86f5a000 [color = "#ff0000", fontsize = 16];
-	node_0000025c86f596e0 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f596e0 | val = '*' |  type = OP | { L:\n addr: 0000025c86f59650 | R: \n addr: 0000025c86f597d0 } }" ];
+	{ rank = 1; "1"; "node_000001b34e7561f0" }
+	node_000001b34e756f60 [ color = "#d408ac", style = "filled", fillcolor = "#ff5fe0", shape = "Mrecord", label = "{ addr: 000001b34e756f60 | val = 'x'| type = VAR | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
+	node_000001b34e7561f0  -> node_000001b34e756f60 [color = "#ff0000", fontsize = 16];
+	node_000001b34e7561c0 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 000001b34e7561c0 | val = '-' |  type = OP | { L:\n addr: 000001b34e756160 | R: \n addr: 000001b34e756190 } }" ];
 
-	node_0000025c86f59a90  -> node_0000025c86f596e0[color = "#ff0000", fontsize = 16];
+	node_000001b34e7561f0  -> node_000001b34e7561c0[color = "#ff0000", fontsize = 16];
 	{
 		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
 		edge[ color = "white"]
 		"1" ->  "2";
 	}
-	node_0000025c86f5a000 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f5a000 | val = '-' |  type = OP | { L:\n addr: 0000025c86f59a60 | R: \n addr: 0000025c86f59770 } }" ];
+	node_000001b34e756f60 [ color = "#d408ac", style = "filled", fillcolor = "#ff5fe0", shape = "Mrecord", label = "{ addr: 000001b34e756f60 | val = 'x'| type = VAR | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
 	{
 		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
 		edge[ color = "white"]
 		"2" ->  "3";
 	}
 
-	{ rank = 2; "2"; "node_0000025c86f5a000" }
-	node_0000025c86f59a60 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f59a60 | val = '*' |  type = OP | { L:\n addr: 0000025c86f59eb0 | R: \n addr: 0000025c86f597a0 } }" ];
-	node_0000025c86f5a000  -> node_0000025c86f59a60 [color = "#ff0000", fontsize = 16];
-	node_0000025c86f59770 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f59770 | val = '*' |  type = OP | { L:\n addr: 0000025c86f595c0 | R: \n addr: 0000025c86f59740 } }" ];
+	{ rank = 2; "2"; "node_000001b34e756f60" }
 
-	node_0000025c86f5a000  -> node_0000025c86f59770[color = "#ff0000", fontsize = 16];
+	{
+		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
+		edge [ color = "#007cff", fontsize = 16];
+
+		node_l_null_000001b34e756f60 [shape = "ellipse", label = " null" ];
+		node_000001b34e756f60  -> node_l_null_000001b34e756f60;
+	}
+
+	{
+		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
+		edge [ color = "#007cff", fontsize = 16];
+
+		node_r_null_000001b34e756f60 [shape = "ellipse", label = " null" ];
+		node_000001b34e756f60  -> node_r_null_000001b34e756f60;
+	}
 	{
 		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
 		edge[ color = "white"]
 		"2" ->  "3";
 	}
-	node_0000025c86f59a60 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f59a60 | val = '*' |  type = OP | { L:\n addr: 0000025c86f59eb0 | R: \n addr: 0000025c86f597a0 } }" ];
-	{
-		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
-		edge[ color = "white"]
-		"3" ->  "4";
-	}
-
-	{ rank = 3; "3"; "node_0000025c86f59a60" }
-	node_0000025c86f59eb0 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f59eb0 | val = '+' |  type = OP | { L:\n addr: 0000025c86f59e80 | R: \n addr: 0000025c86f59910 } }" ];
-	node_0000025c86f59a60  -> node_0000025c86f59eb0 [color = "#ff0000", fontsize = 16];
-	node_0000025c86f597a0 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f597a0 | val = '*' |  type = OP | { L:\n addr: 0000025c87036100 | R: \n addr: 0000025c87036130 } }" ];
-
-	node_0000025c86f59a60  -> node_0000025c86f597a0[color = "#ff0000", fontsize = 16];
-	{
-		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
-		edge[ color = "white"]
-		"3" ->  "4";
-	}
-	node_0000025c86f59eb0 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f59eb0 | val = '+' |  type = OP | { L:\n addr: 0000025c86f59e80 | R: \n addr: 0000025c86f59910 } }" ];
-	{
-		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
-		edge[ color = "white"]
-		"4" ->  "5";
-	}
-
-	{ rank = 4; "4"; "node_0000025c86f59eb0" }
-	node_0000025c86f59e80 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 0000025c86f59e80 | val = 1  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-	node_0000025c86f59eb0  -> node_0000025c86f59e80 [color = "#ff0000", fontsize = 16];
-	node_0000025c86f59910 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 0000025c86f59910 | val = 0  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-
-	node_0000025c86f59eb0  -> node_0000025c86f59910[color = "#ff0000", fontsize = 16];
-	{
-		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
-		edge[ color = "white"]
-		"4" ->  "5";
-	}
-	node_0000025c86f59e80 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 0000025c86f59e80 | val = 1  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-	{
-		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
-		edge[ color = "white"]
-		"5" ->  "6";
-	}
-
-	{ rank = 5; "5"; "node_0000025c86f59e80" }
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_l_null_0000025c86f59e80 [shape = "ellipse", label = " null" ];
-		node_0000025c86f59e80  -> node_l_null_0000025c86f59e80;
-	}
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_r_null_0000025c86f59e80 [shape = "ellipse", label = " null" ];
-		node_0000025c86f59e80  -> node_r_null_0000025c86f59e80;
-	}
-	{
-		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
-		edge[ color = "white"]
-		"5" ->  "6";
-	}
-	node_0000025c86f59910 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 0000025c86f59910 | val = 0  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-	{
-		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
-		edge[ color = "white"]
-		"5" ->  "6";
-	}
-
-	{ rank = 5; "5"; "node_0000025c86f59910" }
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_l_null_0000025c86f59910 [shape = "ellipse", label = " null" ];
-		node_0000025c86f59910  -> node_l_null_0000025c86f59910;
-	}
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_r_null_0000025c86f59910 [shape = "ellipse", label = " null" ];
-		node_0000025c86f59910  -> node_r_null_0000025c86f59910;
-	}
-	{
-		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
-		edge[ color = "white"]
-		"5" ->  "6";
-	}
-	node_0000025c86f597a0 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f597a0 | val = '*' |  type = OP | { L:\n addr: 0000025c87036100 | R: \n addr: 0000025c87036130 } }" ];
-	{
-		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
-		edge[ color = "white"]
-		"4" ->  "5";
-	}
-
-	{ rank = 4; "4"; "node_0000025c86f597a0" }
-	node_0000025c87036100 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 0000025c87036100 | val = 17  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-	node_0000025c86f597a0  -> node_0000025c87036100 [color = "#ff0000", fontsize = 16];
-	node_0000025c87036130 [ color = "#d408ac", style = "filled", fillcolor = "#ff5fe0", shape = "Mrecord", label = "{ addr: 0000025c87036130 | val = 'x'| type = VAR | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-
-	node_0000025c86f597a0  -> node_0000025c87036130[color = "#ff0000", fontsize = 16];
-	{
-		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
-		edge[ color = "white"]
-		"4" ->  "5";
-	}
-	node_0000025c87036100 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 0000025c87036100 | val = 17  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-	{
-		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
-		edge[ color = "white"]
-		"5" ->  "6";
-	}
-
-	{ rank = 5; "5"; "node_0000025c87036100" }
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_l_null_0000025c87036100 [shape = "ellipse", label = " null" ];
-		node_0000025c87036100  -> node_l_null_0000025c87036100;
-	}
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_r_null_0000025c87036100 [shape = "ellipse", label = " null" ];
-		node_0000025c87036100  -> node_r_null_0000025c87036100;
-	}
-	{
-		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
-		edge[ color = "white"]
-		"5" ->  "6";
-	}
-	node_0000025c87036130 [ color = "#d408ac", style = "filled", fillcolor = "#ff5fe0", shape = "Mrecord", label = "{ addr: 0000025c87036130 | val = 'x'| type = VAR | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-	{
-		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
-		edge[ color = "white"]
-		"5" ->  "6";
-	}
-
-	{ rank = 5; "5"; "node_0000025c87036130" }
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_l_null_0000025c87036130 [shape = "ellipse", label = " null" ];
-		node_0000025c87036130  -> node_l_null_0000025c87036130;
-	}
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_r_null_0000025c87036130 [shape = "ellipse", label = " null" ];
-		node_0000025c87036130  -> node_r_null_0000025c87036130;
-	}
-	{
-		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
-		edge[ color = "white"]
-		"5" ->  "6";
-	}
-	node_0000025c86f59770 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f59770 | val = '*' |  type = OP | { L:\n addr: 0000025c86f595c0 | R: \n addr: 0000025c86f59740 } }" ];
-	{
-		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
-		edge[ color = "white"]
-		"3" ->  "4";
-	}
-
-	{ rank = 3; "3"; "node_0000025c86f59770" }
-	node_0000025c86f595c0 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f595c0 | val = '+' |  type = OP | { L:\n addr: 0000025c87036070 | R: \n addr: 0000025c870360a0 } }" ];
-	node_0000025c86f59770  -> node_0000025c86f595c0 [color = "#ff0000", fontsize = 16];
-	node_0000025c86f59740 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f59740 | val = '+' |  type = OP | { L:\n addr: 0000025c86f59590 | R: \n addr: 0000025c86f59830 } }" ];
-
-	node_0000025c86f59770  -> node_0000025c86f59740[color = "#ff0000", fontsize = 16];
-	{
-		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
-		edge[ color = "white"]
-		"3" ->  "4";
-	}
-	node_0000025c86f595c0 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f595c0 | val = '+' |  type = OP | { L:\n addr: 0000025c87036070 | R: \n addr: 0000025c870360a0 } }" ];
-	{
-		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
-		edge[ color = "white"]
-		"4" ->  "5";
-	}
-
-	{ rank = 4; "4"; "node_0000025c86f595c0" }
-	node_0000025c87036070 [ color = "#d408ac", style = "filled", fillcolor = "#ff5fe0", shape = "Mrecord", label = "{ addr: 0000025c87036070 | val = 'x'| type = VAR | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-	node_0000025c86f595c0  -> node_0000025c87036070 [color = "#ff0000", fontsize = 16];
-	node_0000025c870360a0 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 0000025c870360a0 | val = 5  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-
-	node_0000025c86f595c0  -> node_0000025c870360a0[color = "#ff0000", fontsize = 16];
-	{
-		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
-		edge[ color = "white"]
-		"4" ->  "5";
-	}
-	node_0000025c87036070 [ color = "#d408ac", style = "filled", fillcolor = "#ff5fe0", shape = "Mrecord", label = "{ addr: 0000025c87036070 | val = 'x'| type = VAR | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-	{
-		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
-		edge[ color = "white"]
-		"5" ->  "6";
-	}
-
-	{ rank = 5; "5"; "node_0000025c87036070" }
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_l_null_0000025c87036070 [shape = "ellipse", label = " null" ];
-		node_0000025c87036070  -> node_l_null_0000025c87036070;
-	}
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_r_null_0000025c87036070 [shape = "ellipse", label = " null" ];
-		node_0000025c87036070  -> node_r_null_0000025c87036070;
-	}
-	{
-		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
-		edge[ color = "white"]
-		"5" ->  "6";
-	}
-	node_0000025c870360a0 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 0000025c870360a0 | val = 5  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-	{
-		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
-		edge[ color = "white"]
-		"5" ->  "6";
-	}
-
-	{ rank = 5; "5"; "node_0000025c870360a0" }
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_l_null_0000025c870360a0 [shape = "ellipse", label = " null" ];
-		node_0000025c870360a0  -> node_l_null_0000025c870360a0;
-	}
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_r_null_0000025c870360a0 [shape = "ellipse", label = " null" ];
-		node_0000025c870360a0  -> node_r_null_0000025c870360a0;
-	}
-	{
-		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
-		edge[ color = "white"]
-		"5" ->  "6";
-	}
-	node_0000025c86f59740 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f59740 | val = '+' |  type = OP | { L:\n addr: 0000025c86f59590 | R: \n addr: 0000025c86f59830 } }" ];
-	{
-		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
-		edge[ color = "white"]
-		"4" ->  "5";
-	}
-
-	{ rank = 4; "4"; "node_0000025c86f59740" }
-	node_0000025c86f59590 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f59590 | val = '*' |  type = OP | { L:\n addr: 0000025c86f59500 | R: \n addr: 0000025c86f59860 } }" ];
-	node_0000025c86f59740  -> node_0000025c86f59590 [color = "#ff0000", fontsize = 16];
-	node_0000025c86f59830 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f59830 | val = '*' |  type = OP | { L:\n addr: 0000025c86f59710 | R: \n addr: 0000025c86f59530 } }" ];
-
-	node_0000025c86f59740  -> node_0000025c86f59830[color = "#ff0000", fontsize = 16];
-	{
-		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
-		edge[ color = "white"]
-		"4" ->  "5";
-	}
-	node_0000025c86f59590 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f59590 | val = '*' |  type = OP | { L:\n addr: 0000025c86f59500 | R: \n addr: 0000025c86f59860 } }" ];
-	{
-		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
-		edge[ color = "white"]
-		"5" ->  "6";
-	}
-
-	{ rank = 5; "5"; "node_0000025c86f59590" }
-	node_0000025c86f59500 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 0000025c86f59500 | val = 0  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-	node_0000025c86f59590  -> node_0000025c86f59500 [color = "#ff0000", fontsize = 16];
-	node_0000025c86f59860 [ color = "#d408ac", style = "filled", fillcolor = "#ff5fe0", shape = "Mrecord", label = "{ addr: 0000025c86f59860 | val = 'x'| type = VAR | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-
-	node_0000025c86f59590  -> node_0000025c86f59860[color = "#ff0000", fontsize = 16];
-	{
-		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
-		edge[ color = "white"]
-		"5" ->  "6";
-	}
-	node_0000025c86f59500 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 0000025c86f59500 | val = 0  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-	{
-		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
-		edge[ color = "white"]
-		"6" ->  "7";
-	}
-
-	{ rank = 6; "6"; "node_0000025c86f59500" }
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_l_null_0000025c86f59500 [shape = "ellipse", label = " null" ];
-		node_0000025c86f59500  -> node_l_null_0000025c86f59500;
-	}
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_r_null_0000025c86f59500 [shape = "ellipse", label = " null" ];
-		node_0000025c86f59500  -> node_r_null_0000025c86f59500;
-	}
-	{
-		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
-		edge[ color = "white"]
-		"6" ->  "7";
-	}
-	node_0000025c86f59860 [ color = "#d408ac", style = "filled", fillcolor = "#ff5fe0", shape = "Mrecord", label = "{ addr: 0000025c86f59860 | val = 'x'| type = VAR | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-	{
-		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
-		edge[ color = "white"]
-		"6" ->  "7";
-	}
-
-	{ rank = 6; "6"; "node_0000025c86f59860" }
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_l_null_0000025c86f59860 [shape = "ellipse", label = " null" ];
-		node_0000025c86f59860  -> node_l_null_0000025c86f59860;
-	}
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_r_null_0000025c86f59860 [shape = "ellipse", label = " null" ];
-		node_0000025c86f59860  -> node_r_null_0000025c86f59860;
-	}
-	{
-		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
-		edge[ color = "white"]
-		"6" ->  "7";
-	}
-	node_0000025c86f59830 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f59830 | val = '*' |  type = OP | { L:\n addr: 0000025c86f59710 | R: \n addr: 0000025c86f59530 } }" ];
-	{
-		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
-		edge[ color = "white"]
-		"5" ->  "6";
-	}
-
-	{ rank = 5; "5"; "node_0000025c86f59830" }
-	node_0000025c86f59710 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 0000025c86f59710 | val = 17  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-	node_0000025c86f59830  -> node_0000025c86f59710 [color = "#ff0000", fontsize = 16];
-	node_0000025c86f59530 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 0000025c86f59530 | val = 1  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-
-	node_0000025c86f59830  -> node_0000025c86f59530[color = "#ff0000", fontsize = 16];
-	{
-		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
-		edge[ color = "white"]
-		"5" ->  "6";
-	}
-	node_0000025c86f59710 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 0000025c86f59710 | val = 17  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-	{
-		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
-		edge[ color = "white"]
-		"6" ->  "7";
-	}
-
-	{ rank = 6; "6"; "node_0000025c86f59710" }
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_l_null_0000025c86f59710 [shape = "ellipse", label = " null" ];
-		node_0000025c86f59710  -> node_l_null_0000025c86f59710;
-	}
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_r_null_0000025c86f59710 [shape = "ellipse", label = " null" ];
-		node_0000025c86f59710  -> node_r_null_0000025c86f59710;
-	}
-	{
-		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
-		edge[ color = "white"]
-		"6" ->  "7";
-	}
-	node_0000025c86f59530 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 0000025c86f59530 | val = 1  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-	{
-		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
-		edge[ color = "white"]
-		"6" ->  "7";
-	}
-
-	{ rank = 6; "6"; "node_0000025c86f59530" }
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_l_null_0000025c86f59530 [shape = "ellipse", label = " null" ];
-		node_0000025c86f59530  -> node_l_null_0000025c86f59530;
-	}
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_r_null_0000025c86f59530 [shape = "ellipse", label = " null" ];
-		node_0000025c86f59530  -> node_r_null_0000025c86f59530;
-	}
-	{
-		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
-		edge[ color = "white"]
-		"6" ->  "7";
-	}
-	node_0000025c86f596e0 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f596e0 | val = '*' |  type = OP | { L:\n addr: 0000025c86f59650 | R: \n addr: 0000025c86f597d0 } }" ];
+	node_000001b34e7561c0 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 000001b34e7561c0 | val = '-' |  type = OP | { L:\n addr: 000001b34e756160 | R: \n addr: 000001b34e756190 } }" ];
 	{
 		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
 		edge[ color = "white"]
 		"2" ->  "3";
 	}
 
-	{ rank = 2; "2"; "node_0000025c86f596e0" }
-	node_0000025c86f59650 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f59650 | val = '*' |  type = OP | { L:\n addr: 0000025c87036100 | R: \n addr: 0000025c87036130 } }" ];
-	node_0000025c86f596e0  -> node_0000025c86f59650 [color = "#ff0000", fontsize = 16];
-	node_0000025c86f597d0 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f597d0 | val = '*' |  type = OP | { L:\n addr: 0000025c87036100 | R: \n addr: 0000025c87036130 } }" ];
+	{ rank = 2; "2"; "node_000001b34e7561c0" }
+	node_000001b34e756160 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 000001b34e756160 | val = '+' |  type = OP | { L:\n addr: 000001b34e756f90 | R: \n addr: 000001b34e756130 } }" ];
+	node_000001b34e7561c0  -> node_000001b34e756160 [color = "#ff0000", fontsize = 16];
+	node_000001b34e756190 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 000001b34e756190 | val = 6  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
 
-	node_0000025c86f596e0  -> node_0000025c86f597d0[color = "#ff0000", fontsize = 16];
+	node_000001b34e7561c0  -> node_000001b34e756190[color = "#ff0000", fontsize = 16];
 	{
 		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
 		edge[ color = "white"]
 		"2" ->  "3";
 	}
-	node_0000025c86f59650 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f59650 | val = '*' |  type = OP | { L:\n addr: 0000025c87036100 | R: \n addr: 0000025c87036130 } }" ];
+	node_000001b34e756160 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 000001b34e756160 | val = '+' |  type = OP | { L:\n addr: 000001b34e756f90 | R: \n addr: 000001b34e756130 } }" ];
 	{
 		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
 		edge[ color = "white"]
 		"3" ->  "4";
 	}
 
-	{ rank = 3; "3"; "node_0000025c86f59650" }
-	node_0000025c87036100 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 0000025c87036100 | val = 17  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-	node_0000025c86f59650  -> node_0000025c87036100 [color = "#ff0000", fontsize = 16];
-	node_0000025c87036130 [ color = "#d408ac", style = "filled", fillcolor = "#ff5fe0", shape = "Mrecord", label = "{ addr: 0000025c87036130 | val = 'x'| type = VAR | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
+	{ rank = 3; "3"; "node_000001b34e756160" }
+	node_000001b34e756f90 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 000001b34e756f90 | val = 1  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
+	node_000001b34e756160  -> node_000001b34e756f90 [color = "#ff0000", fontsize = 16];
+	node_000001b34e756130 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 000001b34e756130 | val = '*' |  type = OP | { L:\n addr: 000001b34e7560d0 | R: \n addr: 000001b34e756100 } }" ];
 
-	node_0000025c86f59650  -> node_0000025c87036130[color = "#ff0000", fontsize = 16];
+	node_000001b34e756160  -> node_000001b34e756130[color = "#ff0000", fontsize = 16];
 	{
 		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
 		edge[ color = "white"]
 		"3" ->  "4";
 	}
-	node_0000025c87036100 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 0000025c87036100 | val = 17  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
+	node_000001b34e756f90 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 000001b34e756f90 | val = 1  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
 	{
 		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
 		edge[ color = "white"]
 		"4" ->  "5";
 	}
 
-	{ rank = 4; "4"; "node_0000025c87036100" }
+	{ rank = 4; "4"; "node_000001b34e756f90" }
 
 	{
 		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
 		edge [ color = "#007cff", fontsize = 16];
 
-		node_l_null_0000025c87036100 [shape = "ellipse", label = " null" ];
-		node_0000025c87036100  -> node_l_null_0000025c87036100;
+		node_l_null_000001b34e756f90 [shape = "ellipse", label = " null" ];
+		node_000001b34e756f90  -> node_l_null_000001b34e756f90;
 	}
 
 	{
 		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
 		edge [ color = "#007cff", fontsize = 16];
 
-		node_r_null_0000025c87036100 [shape = "ellipse", label = " null" ];
-		node_0000025c87036100  -> node_r_null_0000025c87036100;
+		node_r_null_000001b34e756f90 [shape = "ellipse", label = " null" ];
+		node_000001b34e756f90  -> node_r_null_000001b34e756f90;
 	}
 	{
 		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
 		edge[ color = "white"]
 		"4" ->  "5";
 	}
-	node_0000025c87036130 [ color = "#d408ac", style = "filled", fillcolor = "#ff5fe0", shape = "Mrecord", label = "{ addr: 0000025c87036130 | val = 'x'| type = VAR | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
+	node_000001b34e756130 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 000001b34e756130 | val = '*' |  type = OP | { L:\n addr: 000001b34e7560d0 | R: \n addr: 000001b34e756100 } }" ];
 	{
 		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
 		edge[ color = "white"]
 		"4" ->  "5";
 	}
 
-	{ rank = 4; "4"; "node_0000025c87036130" }
+	{ rank = 4; "4"; "node_000001b34e756130" }
+	node_000001b34e7560d0 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 000001b34e7560d0 | val = 2  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
+	node_000001b34e756130  -> node_000001b34e7560d0 [color = "#ff0000", fontsize = 16];
+	node_000001b34e756100 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 000001b34e756100 | val = 7  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
 
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_l_null_0000025c87036130 [shape = "ellipse", label = " null" ];
-		node_0000025c87036130  -> node_l_null_0000025c87036130;
-	}
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_r_null_0000025c87036130 [shape = "ellipse", label = " null" ];
-		node_0000025c87036130  -> node_r_null_0000025c87036130;
-	}
+	node_000001b34e756130  -> node_000001b34e756100[color = "#ff0000", fontsize = 16];
 	{
 		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
 		edge[ color = "white"]
 		"4" ->  "5";
 	}
-	node_0000025c86f597d0 [ color = "#ffc500", style = "filled", fillcolor = "#ecfd74", shape = "Mrecord", label = "{ addr: 0000025c86f597d0 | val = '*' |  type = OP | { L:\n addr: 0000025c87036100 | R: \n addr: 0000025c87036130 } }" ];
+	node_000001b34e7560d0 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 000001b34e7560d0 | val = 2  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
+	{
+		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
+		edge[ color = "white"]
+		"5" ->  "6";
+	}
+
+	{ rank = 5; "5"; "node_000001b34e7560d0" }
+
+	{
+		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
+		edge [ color = "#007cff", fontsize = 16];
+
+		node_l_null_000001b34e7560d0 [shape = "ellipse", label = " null" ];
+		node_000001b34e7560d0  -> node_l_null_000001b34e7560d0;
+	}
+
+	{
+		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
+		edge [ color = "#007cff", fontsize = 16];
+
+		node_r_null_000001b34e7560d0 [shape = "ellipse", label = " null" ];
+		node_000001b34e7560d0  -> node_r_null_000001b34e7560d0;
+	}
+	{
+		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
+		edge[ color = "white"]
+		"5" ->  "6";
+	}
+	node_000001b34e756100 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 000001b34e756100 | val = 7  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
+	{
+		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
+		edge[ color = "white"]
+		"5" ->  "6";
+	}
+
+	{ rank = 5; "5"; "node_000001b34e756100" }
+
+	{
+		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
+		edge [ color = "#007cff", fontsize = 16];
+
+		node_l_null_000001b34e756100 [shape = "ellipse", label = " null" ];
+		node_000001b34e756100  -> node_l_null_000001b34e756100;
+	}
+
+	{
+		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
+		edge [ color = "#007cff", fontsize = 16];
+
+		node_r_null_000001b34e756100 [shape = "ellipse", label = " null" ];
+		node_000001b34e756100  -> node_r_null_000001b34e756100;
+	}
+	{
+		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
+		edge[ color = "white"]
+		"5" ->  "6";
+	}
+	node_000001b34e756190 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 000001b34e756190 | val = 6  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
 	{
 		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
 		edge[ color = "white"]
 		"3" ->  "4";
 	}
 
-	{ rank = 3; "3"; "node_0000025c86f597d0" }
-	node_0000025c87036100 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 0000025c87036100 | val = 17  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-	node_0000025c86f597d0  -> node_0000025c87036100 [color = "#ff0000", fontsize = 16];
-	node_0000025c87036130 [ color = "#d408ac", style = "filled", fillcolor = "#ff5fe0", shape = "Mrecord", label = "{ addr: 0000025c87036130 | val = 'x'| type = VAR | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
+	{ rank = 3; "3"; "node_000001b34e756190" }
 
-	node_0000025c86f597d0  -> node_0000025c87036130[color = "#ff0000", fontsize = 16];
+	{
+		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
+		edge [ color = "#007cff", fontsize = 16];
+
+		node_l_null_000001b34e756190 [shape = "ellipse", label = " null" ];
+		node_000001b34e756190  -> node_l_null_000001b34e756190;
+	}
+
+	{
+		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
+		edge [ color = "#007cff", fontsize = 16];
+
+		node_r_null_000001b34e756190 [shape = "ellipse", label = " null" ];
+		node_000001b34e756190  -> node_r_null_000001b34e756190;
+	}
 	{
 		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
 		edge[ color = "white"]
 		"3" ->  "4";
-	}
-	node_0000025c87036100 [ color = "#18ca1c", style = "filled", fillcolor = "#a2f8a4", shape = "Mrecord", label = "{ addr: 0000025c87036100 | val = 17  | type = NUM | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-	{
-		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
-		edge[ color = "white"]
-		"4" ->  "5";
-	}
-
-	{ rank = 4; "4"; "node_0000025c87036100" }
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_l_null_0000025c87036100 [shape = "ellipse", label = " null" ];
-		node_0000025c87036100  -> node_l_null_0000025c87036100;
-	}
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_r_null_0000025c87036100 [shape = "ellipse", label = " null" ];
-		node_0000025c87036100  -> node_r_null_0000025c87036100;
-	}
-	{
-		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
-		edge[ color = "white"]
-		"4" ->  "5";
-	}
-	node_0000025c87036130 [ color = "#d408ac", style = "filled", fillcolor = "#ff5fe0", shape = "Mrecord", label = "{ addr: 0000025c87036130 | val = 'x'| type = VAR | { L:\n addr: 0000000000000000 | R: \n addr: 0000000000000000 } }" ];
-	{
-		node[ color = "#581845", shape = "circle", style = "filled" ,fillcolor="#fe5656"];
-		edge[ color = "white"]
-		"4" ->  "5";
-	}
-
-	{ rank = 4; "4"; "node_0000025c87036130" }
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_l_null_0000025c87036130 [shape = "ellipse", label = " null" ];
-		node_0000025c87036130  -> node_l_null_0000025c87036130;
-	}
-
-	{
-		node [ color = "#007cff", shape = "rectangle", style = "filled", fillcolor = "#a2f0f8"];
-		edge [ color = "#007cff", fontsize = 16];
-
-		node_r_null_0000025c87036130 [shape = "ellipse", label = " null" ];
-		node_0000025c87036130  -> node_r_null_0000025c87036130;
-	}
-	{
-		node[ shape = "plaintext", style = "filled" ,fillcolor="white"];
-		edge[ color = "white"]
-		"4" ->  "5";
 	}
 }

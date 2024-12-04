@@ -18,7 +18,7 @@ int main (int argc, char* argv[])
 {
     diff* diff_data = Diff_init (argc, argv);
 
-    node* Node =  GetGrammatic(diff_data ->onegin->buffer_addr); 
+    node* Node =  GetGrammatic(diff_data ->onegin->buffer_addr);        
     Dump_tree (Node);
 
     val_t value = Eval(Node);
@@ -27,8 +27,12 @@ int main (int argc, char* argv[])
     node* node_d = Diff(Node);
     Dump_tree (node_d);
 
+    Const_Folding (Node);
+    Dump_tree (Node);
+
     //LaTeX_print_expression (Node, node_d);
 
+    Del_tree (Node);
     txDisableAutoPause ();  
 }
 //==================================================================================================

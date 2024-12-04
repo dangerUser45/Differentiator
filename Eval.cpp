@@ -46,7 +46,7 @@ val_t Eval (node* node)
             return log(Eval(node -> left));
 
             case LOG:
-            return log(Eval(node -> left)) / log(Eval(node -> right));
+            return log(Eval(node -> right)) / log(Eval(node -> left));
 
             case EXP:
             return exp(Eval (node -> left));
