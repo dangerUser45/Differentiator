@@ -1,4 +1,5 @@
 #include "Diff.h"
+#include "Eval.h"
 
 extern FILE* Log_File;
 
@@ -97,48 +98,28 @@ node* Diff (node* Node)
     else
         switch ((int)Node -> val)
         {
-            case ADD:                             {
-            node* dl = _dl; node* dr = _dr;
-            return Create_node (OP, ADD, dl, dr); }
+            case ADD: return Create_node (OP, ADD, _dl, _dr); 
 
-            case SUB:                             {
-            node* dl = _dl; node* dr = _dr;
-            return Create_node (OP, SUB, dl, dr); }
+            case SUB: return Create_node (OP, SUB, _dl, _dr); 
 
-            case LOG:                                             {
-            if (Var_Count_Envelope (Node -> left))
-                node* dl = _dl; node* dr = _dr;     
-                return _MUL(_DIV(_DIV(_NUM(1), _cr), _LN(_cl)), _dr);
-            else 
-            }
+            case LOG: 
+            {if (!Var_Count_Envelope (Node -> left))
+                 return _MUL(_DIV(_DIV(_NUM(1), _cr), _LN(_cl)), _dr);
+            else return Diff (_DIV(_LN(_cr), _LN(_cl)));}
 
-            case LN:                                     {
-            node* dl = _dl; node* dr = _dr;
-            return _MUL(_DIV(_NUM(1), _cr), _dr);        }
+            case LN: return _MUL(_DIV(_NUM(1), _cl), _dl);        
 
-            case MUL:                                     {
-            node* dl = _dl; node* dr = _dr;
-            return _ADD(_MUL(_dl, _cr), _MUL (_cl, _dr)); }
+            case MUL: return _ADD(_MUL(_dl, _cr), _MUL (_cl, _dr)); 
+            
+            case DIV: return _DIV( _SUB ( _MUL(_dl, _cr), _MUL (_cl, _dr) ), _MUL(_cr, _cr)); 
 
-            case DIV:                                                               {
-            node* dl = _dl; node* dr = _dr;
-            return _DIV( _SUB ( _MUL(_dl, _cr), _MUL (_cl, _dr) ), _MUL(_cr, _cr)); }
+            case SIN: return _MUL(_COS(_cl), _dl);
 
-            case SIN:                       {
-            node* dl = _dl; node* dr = _dr;
-            return _MUL(_COS(_cl), _dl);  }
+            case COS: return _MUL( _MUL( _NUM(-1), _SIN(_cl)), _dl); 
 
-            case COS:                                      {
-            node* dl = _dl; node* dr = _dr;
-            return _MUL( _MUL( _NUM(-1), _SIN(_cl)), _dl); }
+            case TAN: return _MUL( _DIV(_NUM(1), _POW(_COS(_cl), _NUM(2))), _dl);  
 
-            case TAN:                                                    {
-            node* dl = _dl; node* dr = _dr;
-            return _MUL( _DIV(_NUM(1), _POW(_COS(_cl), _NUM(2))), _dl);  }
-
-            case EXP:                       {
-            node* dl = _dl; node* dr = _dr;
-            return _MUL( _EXP(_cr), _dr);   }
+            case EXP: return _MUL( _EXP(_cr), _dr);   
                                                           
             case POW:
             {
@@ -158,8 +139,7 @@ node* Diff (node* Node)
                     return 0;     
             }
 
-            default: DBG (printf ("Error in: %s, %d\n", __FILE__ ,__LINE__);
-            return 0;);
+            default: DBG (printf ("Error in: %s, %d\n", __FILE__ ,__LINE__);) return 0;
         }
 }
 //==================================================================================================
@@ -199,5 +179,16 @@ node* Create_copy_node (node* Node)
     Create_copy_node (Node -> right);
 
     return New_Node;
+}
+//==================================================================================================
+void Const_Folding (node* Node)
+{
+    if (!Node) return;
+
+    if (Node -> type == VAR) return;
+    else if (!Var_Count_Envelope (Node)) Eval(Node);
+
+    Const_Folding (Node -> left);
+    Const_Folding (Node -> right);
 }
 //==================================================================================================

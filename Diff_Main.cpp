@@ -21,8 +21,8 @@ int main (int argc, char* argv[])
     node* Node =  GetGrammatic(diff_data ->onegin->buffer_addr); 
     Dump_tree (Node);
 
-    //val_t value = Eval(Node);
-    //printf ("Eval value = %" TYPE "", value);
+    val_t value = Eval(Node);
+    printf ("Eval value = %" TYPE "", value);
 
     node* node_d = Diff(Node);
     Dump_tree (node_d);

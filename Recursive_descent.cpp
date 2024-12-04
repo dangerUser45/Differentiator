@@ -139,8 +139,8 @@ node* GetMathFunc ()
     node* node = GetBracketEx ();
     return _LN(node);                }
 
-    else if (string[pointer] == 'L') {
 //-------------- LOG ---------------------------
+    else if (string[pointer] == 'L') {
     pointer++;
     node* node1 = GetBracketEx ();
         if (!node1) SyntaxError ();
