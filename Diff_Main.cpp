@@ -18,16 +18,16 @@ int main (int argc, char* argv[])
 {
     diff* diff_data = Diff_init (argc, argv);
 
-    node* node_root =  GetGrammatic(diff_data ->onegin->buffer_addr); 
-    Dump_tree (node_root);
+    node* Node =  GetGrammatic(diff_data ->onegin->buffer_addr); 
+    Dump_tree (Node);
 
-    val_t value = Eval(node_root);
-    printf ("Eval value = %" TYPE "", value);
+    //val_t value = Eval(Node);
+    //printf ("Eval value = %" TYPE "", value);
 
-    node* node_d = Diff(node_root);
+    node* node_d = Diff(Node);
     Dump_tree (node_d);
 
-    LaTeX_print_expression (node_root, node_d);
+    //LaTeX_print_expression (Node, node_d);
 
     txDisableAutoPause ();  
 }

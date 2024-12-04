@@ -3,7 +3,8 @@
 extern FILE* Log_File;
 
 node* Check_and_Create (char* buffer);
-size_t Var_Count (node* Node);
+size_t Var_Count_Envelope (node* Node);
+size_t Var_Count (node* Node, size_t* var_num);
 
 //==================================================================================================
 /*
@@ -87,7 +88,10 @@ node* Create_node (type_t type, double data, node* node_left, node* node_right)
 //==================================================================================================
 node* Diff (node* Node)
 {
+    if (!Node) return NULL;
+    size_t num_left_sub, num_right_sub = 0;
     if (Node -> type == NUM) return _NUM(0);
+
     else if (Node -> type == VAR) return _NUM(1) ;
 
     else
@@ -101,44 +105,82 @@ node* Diff (node* Node)
             node* dl = _dl; node* dr = _dr;
             return Create_node (OP, SUB, dl, dr); }
 
+            case LOG:                                             {
+            if (Var_Count_Envelope (Node -> left))
+                node* dl = _dl; node* dr = _dr;     
+                return _MUL(_DIV(_DIV(_NUM(1), _cr), _LN(_cl)), _dr);
+            else 
+            }
+
+            case LN:                                     {
+            node* dl = _dl; node* dr = _dr;
+            return _MUL(_DIV(_NUM(1), _cr), _dr);        }
+
             case MUL:                                     {
             node* dl = _dl; node* dr = _dr;
             return _ADD(_MUL(_dl, _cr), _MUL (_cl, _dr)); }
 
-            case DIV:                                                                         {
+            case DIV:                                                               {
             node* dl = _dl; node* dr = _dr;
-            return _DIV( _SUB ( _MUL(_dl, _cr), _MUL (_cl, _dr) ), _MUL(Node -> right, _cr)); }
+            return _DIV( _SUB ( _MUL(_dl, _cr), _MUL (_cl, _dr) ), _MUL(_cr, _cr)); }
 
-            case POW:                        {
+            case SIN:                       {
             node* dl = _dl; node* dr = _dr;
-            if (Var_Count (Node -> left) != NULL && Var_Count (Node -> right) != NULL){
-                printf ("x^x\n"); return 0;}
+            return _MUL(_COS(_cl), _dl);  }
 
-            else if (Var_Count (Node -> left) != NULL)  {
-                printf ("x^a\n"); return 0; return 0;   }
+            case COS:                                      {
+            node* dl = _dl; node* dr = _dr;
+            return _MUL( _MUL( _NUM(-1), _SIN(_cl)), _dl); }
 
-            else if (Var_Count (Node-> right ) != NULL) {
-                printf ("a^x\n"); return 0;             }
+            case TAN:                                                    {
+            node* dl = _dl; node* dr = _dr;
+            return _MUL( _DIV(_NUM(1), _POW(_COS(_cl), _NUM(2))), _dl);  }
 
-            else {
-                printf ("x shtrix = (null)\n");
-                return 0;}
-                                            }
+            case EXP:                       {
+            node* dl = _dl; node* dr = _dr;
+            return _MUL( _EXP(_cr), _dr);   }
+                                                          
+            case POW:
+            {
+                num_left_sub  = Var_Count_Envelope (Node -> left);
+                num_right_sub = Var_Count_Envelope (Node -> right);
+
+                if (num_left_sub != NULL && num_right_sub != NULL)
+                    return _MUL( _POW( _cl, _cr), _ADD( _MUL( _dr, _LN(_cl)), _MUL( _cr, _DIV( _dl, _cl))));
+
+                else if (num_left_sub != NULL && num_right_sub == NULL)
+                    return _MUL( _NUM(Node -> right -> val), _POW(_cl, _SUB(_cr, _NUM(1))));
+
+                else if (num_left_sub == NULL && num_right_sub != NULL) 
+                    return _MUL(_MUL( _POW(_cl, _cr), _LN(_cr)), _dr); 
+
+                else 
+                    return 0;     
+            }
+
             default: DBG (printf ("Error in: %s, %d\n", __FILE__ ,__LINE__);
             return 0;);
         }
 }
 //==================================================================================================
-size_t Var_Count (node* Node)
+size_t Var_Count_Envelope (node* Node)
 {
-    size_t var_num = 0;
-    if (!Node) return var_num;
+    size_t* var_num = (size_t*) calloc (1, sizeof (size_t));
+    size_t count = Var_Count (Node, var_num);
+    free (var_num);
 
-    if (Node -> type == VAR) var_num++;
-    Var_Count (Node -> left);
-    Var_Count (Node -> right);
+    return count;
+}
+//==================================================================================================
+size_t Var_Count (node* Node, size_t* var_num)
+{
+    if (!Node) return *var_num;
 
-    return var_num;
+    if (Node -> type == VAR) (*var_num)++;
+    Var_Count (Node -> left, var_num);
+    Var_Count (Node -> right, var_num);
+
+    return *var_num;
 }
 //==================================================================================================
 

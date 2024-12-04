@@ -12,6 +12,10 @@
 #define _COS(val)        Create_node (OP, COS, val, 0)
 #define _SIN(val)        Create_node (OP, SIN, val, 0)
 #define _POW(val1, val2) Create_node (OP, POW, val1, val2)
+#define _LN(val)         Create_node (OP, LN,  val, 0)
+#define _LOG(val1, val2) Create_node (OP, LOG, val1, val2)
+#define _EXP(val)        Create_node (OP, EXP, val, 0)
+#define _TAN(val)        Create_node (OP, TAN, val, 0)
 
 #define _dl Diff (Node -> left)
 #define _dr Diff (Node -> right)

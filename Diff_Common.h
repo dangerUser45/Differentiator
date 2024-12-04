@@ -3,7 +3,7 @@
 #include "..\Processor\Onegin_for_proc\Onegin_General.h" 
 
 enum type_t     {NUM = 1, VAR, OP};
-enum operations {ADD = '+', SUB = '-', MUL = '*', DIV = '/', COS = 'c', SIN = 's', POW = '^'};
+enum operations {ADD = '+', SUB = '-', MUL = '*', DIV = '/', COS = 'c', SIN = 's', POW = '^', LOG = 'L', LN = 'l', EXP = 'e', TAN = 't'};
   
 #define TYPE "lg"
 #define SCALE 50

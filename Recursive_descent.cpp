@@ -6,7 +6,7 @@ static node* GetExpression ();
 static node* GetTerm ();
 static node* GetPow  ();
 static node* GetPrime ();
-static node* GetTrigonometry ();
+static node* GetMathFunc ();
 static node* GetVar ();
 static node* GetBracketEx ();
 static node* GetNumber ();
@@ -86,13 +86,13 @@ node* GetPow  ()
 node* GetPrime ()
 {
     node* node_val = GetBracketEx ();
-    if (node_val) 
+    if (node_val)
         return node_val;
 
     else if (string[pointer] == 'x')
         return GetVar ();
 
-    else node_val = GetTrigonometry ();
+    else node_val = GetMathFunc ();
         if (node_val)
             return node_val;      
         else 
@@ -121,17 +121,44 @@ node* GetVar ()
     return node_var;
 }
 //==================================================================================================
-node* GetTrigonometry ()
+node* GetMathFunc ()
 {
+//-------------- COS ---------------------------
     if (string[pointer] == 'c')  {
     pointer++;
     node* node = GetBracketEx ();
     return _COS(node);           }
-
+//-------------- SIN ---------------------------
     else if (string[pointer] == 's') {
     pointer++;
     node* node = GetBracketEx ();
     return _SIN(node);               }
+//-------------- LN ---------------------------
+    else if (string[pointer] == 'l') {
+    pointer++;
+    node* node = GetBracketEx ();
+    return _LN(node);                }
+
+    else if (string[pointer] == 'L') {
+//-------------- LOG ---------------------------
+    pointer++;
+    node* node1 = GetBracketEx ();
+        if (!node1) SyntaxError ();
+
+    node* node2 = GetBracketEx ();
+        if (!node2) SyntaxError ();
+
+    return _LOG(node1, node2);       }
+//-------------- EXP ---------------------------
+    else if (string[pointer] == 'e') {
+    pointer++;
+    node* node = GetBracketEx ();
+    return _EXP(node);               }
+//-------------- TAN ---------------------------
+    else if (string[pointer] == 't') {
+    pointer++;
+    node* node = GetBracketEx ();
+    return _TAN(node);               }
 
     else return 0;
 }
