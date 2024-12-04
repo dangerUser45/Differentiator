@@ -4,6 +4,7 @@
 
 static node* GetExpression ();
 static node* GetTerm ();
+static node* GetPow  ();
 static node* GetPrime ();
 static node* GetTrigonometry ();
 static node* GetVar ();
@@ -48,13 +49,13 @@ node* GetExpression ()
 //==================================================================================================
 node* GetTerm ()
 {
-    node* node_val1 = GetPrime ();
+    node* node_val1 = GetPow ();
 
     while (string[pointer] == '*' || string[pointer] == '/')
     {
         char op = string[pointer];
     pointer++;
-    node* node_val2 = GetPrime ();
+    node* node_val2 = GetPow ();
 
     if (op == '*')
          node_val1 = _MUL (node_val1, node_val2);
@@ -64,6 +65,24 @@ node* GetTerm ()
     return node_val1;
 }
 //==================================================================================================
+node* GetPow  ()
+{
+    node* node_val1 = GetPrime ();
+
+    while (string[pointer] == '^')
+    {
+        char op = string[pointer];
+    pointer++;
+    node* node_val2 = GetPrime ();
+
+    if (op == '^')
+        node_val1 = _POW (node_val1, node_val2);
+    }
+
+    return node_val1;
+}
+//==================================================================================================
+
 node* GetPrime ()
 {
     node* node_val = GetBracketEx ();

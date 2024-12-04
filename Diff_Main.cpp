@@ -7,6 +7,7 @@
 #include "Eval.h"
 #include "Diff.h"
 #include "Diff_Dump.h"
+#include "LaTeX.h"
 
 extern FILE* Log_File;
 extern FILE* Graph_File;
@@ -20,10 +21,13 @@ int main (int argc, char* argv[])
     node* node_root =  GetGrammatic(diff_data ->onegin->buffer_addr); 
     Dump_tree (node_root);
 
+    val_t value = Eval(node_root);
+    printf ("Eval value = %" TYPE "", value);
+
     node* node_d = Diff(node_root);
     Dump_tree (node_d);
 
-    Tex_print (node)
+    LaTeX_print_expression (node_root, node_d);
 
     txDisableAutoPause ();  
 }

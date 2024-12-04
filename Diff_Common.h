@@ -7,7 +7,7 @@ enum operations {ADD = '+', SUB = '-', MUL = '*', DIV = '/', COS = 'c', SIN = 's
   
 #define TYPE "lg"
 #define SCALE 50
-#define LENGTH 256
+#define LENGTH 256 
 
 typedef double val_t;
 

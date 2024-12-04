@@ -3,8 +3,8 @@ B        = build_diff/
 Target   = diff
 #-----------------------------------------------------------------------
 
-$(Target):      $(B)Diff_Main.o $(B)Diff_Init.o $(B)Diff.o $(B)Diff_Dump.o $(B)Recursive_descent.o $(B)Eval.o $(B)TXLib.o $(B)Print.o $(B)Processing.o
-	$(Compiler) $(B)Diff_Main.o $(B)Diff_Init.o $(B)Diff.o $(B)Diff_Dump.o $(B)Recursive_descent.o $(B)Eval.o $(B)TXLib.o $(B)Print.o $(B)Processing.o -o diff.exe
+$(Target):      $(B)Diff_Main.o $(B)Diff_Init.o $(B)Diff.o $(B)Diff_Dump.o $(B)Recursive_descent.o $(B)Eval.o $(B)LaTeX.o $(B)TXLib.o $(B)Print.o $(B)Processing.o
+	$(Compiler) $(B)Diff_Main.o $(B)Diff_Init.o $(B)Diff.o $(B)Diff_Dump.o $(B)Recursive_descent.o $(B)Eval.o $(B)LaTeX.o $(B)TXLib.o $(B)Print.o $(B)Processing.o -o diff.exe
 #-----------------------------------------------------------------------
 
 $(B)Diff_Main.o : Diff_Main.cpp                                  \
@@ -12,7 +12,8 @@ $(B)Diff_Main.o : Diff_Main.cpp                                  \
 				Recursive_descent.h                              \
 				Diff_Init.h                                      \
 				Eval.h                                           \
-				Diff_Dump.h
+				Diff_Dump.h                                      \
+				LaTeX.h
 	$(Compiler) -c Diff_Main.cpp -o $(B)Diff_Main.o
 
 $(B)Diff_Init.o : Diff_Init.cpp                                  \
@@ -34,7 +35,7 @@ $(B)Diff_Dump.o : Diff_Dump.cpp                                  \
 
 
 $(B)Recursive_descent.o: Recursive_descent.cpp                   \
-				Diff.h                                    \
+				Diff.h                                           \
 				Recursive_descent.h
 	$(Compiler) -c Recursive_descent.cpp -o $(B)Recursive_descent.o
 
@@ -43,6 +44,10 @@ $(B)Eval.o : Eval.cpp                                            \
 			 Diff_Common.h 
 	$(Compiler) -c Eval.cpp -o $(B)Eval.o
 
+$(B)LaTeX.o : LaTeX.cpp                                          \
+			  LaTeX.h                                            \
+			  Diff_Init.h
+	$(Compiler) -c LaTeX.cpp -o $(B)LaTeX.o
 
 $(B)Print.o : ../Processor/Onegin_for_proc/Print.cpp             \
 		      ../Processor/Onegin_for_proc/Onegin_General.h      \

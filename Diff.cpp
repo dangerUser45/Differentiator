@@ -3,6 +3,7 @@
 extern FILE* Log_File;
 
 node* Check_and_Create (char* buffer);
+size_t Var_Count (node* Node);
 
 //==================================================================================================
 /*
@@ -102,17 +103,45 @@ node* Diff (node* Node)
 
             case MUL:                                     {
             node* dl = _dl; node* dr = _dr;
-            return _ADD(_MUL(_dl, _cl), _MUL (_cr, _dr)); }
-        
-            case DIV:                                                                                   {
-            node* dl = _dl; node* dr = _dr;
-            return _DIV( _SUB ( _MUL(_dl, _cl), _MUL (_cr, _dr) ), _MUL(Node -> right, Node -> right)); }
+            return _ADD(_MUL(_dl, _cr), _MUL (_cl, _dr)); }
 
-            default: DBG (printf ("Error in: %s, %d", __FILE__ ,__LINE__);
+            case DIV:                                                                         {
+            node* dl = _dl; node* dr = _dr;
+            return _DIV( _SUB ( _MUL(_dl, _cr), _MUL (_cl, _dr) ), _MUL(Node -> right, _cr)); }
+
+            case POW:                        {
+            node* dl = _dl; node* dr = _dr;
+            if (Var_Count (Node -> left) != NULL && Var_Count (Node -> right) != NULL){
+                printf ("x^x\n"); return 0;}
+
+            else if (Var_Count (Node -> left) != NULL)  {
+                printf ("x^a\n"); return 0; return 0;   }
+
+            else if (Var_Count (Node-> right ) != NULL) {
+                printf ("a^x\n"); return 0;             }
+
+            else {
+                printf ("x shtrix = (null)\n");
+                return 0;}
+                                            }
+            default: DBG (printf ("Error in: %s, %d\n", __FILE__ ,__LINE__);
             return 0;);
         }
 }
 //==================================================================================================
+size_t Var_Count (node* Node)
+{
+    size_t var_num = 0;
+    if (!Node) return var_num;
+
+    if (Node -> type == VAR) var_num++;
+    Var_Count (Node -> left);
+    Var_Count (Node -> right);
+
+    return var_num;
+}
+//==================================================================================================
+
 node* Create_copy_node (node* Node)
 {
     if (!Node) return Node;
@@ -130,10 +159,3 @@ node* Create_copy_node (node* Node)
     return New_Node;
 }
 //==================================================================================================
-Tex_print (node* Node)
-{
-    fprintf (Tex_File, "$")
-    fprintf (Tex_File, "\frac")
-
-
-}
