@@ -198,12 +198,3 @@ void Const_Folding (node* Node)
     Const_Folding (Node -> right);
 }
 //==================================================================================================
-void Del_tree (node* Node)
-{
-    if (Node) free (Node);
-    else return;
-
-    Del_tree (Node -> left);
-    Del_tree (Node -> right);
-}
-//==================================================================================================

@@ -27,4 +27,3 @@ node* Check_and_Create (char* buffer);
 node* Diff (node* Node);
 node* Create_copy_node (node* Node);
 void Const_Folding (node* Node);
-void Del_tree (node* Node);

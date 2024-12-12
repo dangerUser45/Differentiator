@@ -3,14 +3,14 @@
 #include "Recursive_descent.h"
 
 static node* GetExpression ();
-static node* GetTerm ();
-static node* GetPow  ();
-static node* GetPrime ();
-static node* GetMathFunc ();
-static node* GetVar ();
-static node* GetBracketEx ();
-static node* GetNumber ();
-static void SyntaxError ();
+static node* GetTerm       ();
+static node* GetPow        ();
+static node* GetPrime      ();
+static node* GetMathFunc   ();
+static node* GetVar        ();
+static node* GetBracketEx  ();
+static node* GetNumber     ();
+static void SyntaxError    ();
 
 const char* string  = 0;
 int         pointer = 0;
@@ -82,7 +82,6 @@ node* GetPow  ()
     return node_val1;
 }
 //==================================================================================================
-
 node* GetPrime ()
 {
     node* node_val = GetBracketEx ();
@@ -138,7 +137,6 @@ node* GetMathFunc ()
     pointer++;
     node* node = GetBracketEx ();
     return _LN(node);                }
-
 //-------------- LOG ---------------------------
     else if (string[pointer] == 'L') {
     pointer++;
