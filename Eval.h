@@ -2,4 +2,4 @@
 
 val_t Eval (node* node);
 
-const val_t _Global_X = 10;
+const val_t _Global_X = 1;

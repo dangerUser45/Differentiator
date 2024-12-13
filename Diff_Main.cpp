@@ -25,8 +25,8 @@ int main (int argc, char* argv[])
     Simplification (&Node); 
     Dump_tree (Node);
 
-    
-    /*val_t value = Eval(Node);
+
+    val_t value = Eval(Node);
     printf ("Eval value = %" TYPE "\n", value);
 
     node* node_d = Diff(Node);
@@ -35,10 +35,10 @@ int main (int argc, char* argv[])
     Dump_tree (node_d);
 
 
-    //LaTeX_print_expression (Node, node_d);
+    LaTeX_print_expression (Node, node_d);
 
     Del_tree(Node, &Node);
-    Del_tree(node_d, &node_d);*/
+    Del_tree(node_d, &node_d);
 
     printf ("All Good\n");
     txDisableAutoPause ();

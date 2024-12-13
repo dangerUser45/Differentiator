@@ -120,7 +120,7 @@ node* Diff (node* Node)
             case TAN: return _MUL( _DIV(_NUM(1), _POW(_COS(_cl), _NUM(2))), _dl);  
 
             case EXP: return _MUL( _EXP(_cr), _dr);   
-                                                          
+
             case POW:
             {
                 num_left_sub  = Var_Count_Envelope (Node -> left);

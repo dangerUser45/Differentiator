@@ -133,7 +133,7 @@ int LaTeX_print_expression (node* Node, node* Node_diff)
     Dtor_LaTeX (Latex_File);
 
     unlink ("LaTeX_File.pdf");
-    system("pdflatex LaTeX_File.tex");  
+    system ("pdflatex LaTeX_File.tex");
     
     return 0;
 }
