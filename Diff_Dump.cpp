@@ -28,8 +28,8 @@ int Dump_tree (node* node_)
     char* name_cmd = (char*) calloc (64, sizeof (char));
     char* name_pic = (char*) calloc (16, sizeof (char));
 
-    snprintf (name_cmd, 64, "dot Dot_UTF-8.txt -Tsvg -o Diff_tree/tree_%zu.svg", number_pic);
-    snprintf (name_pic, 16, "tree_%zu.svg", number_pic);
+    snprintf (name_cmd, 64, "dot Dot_UTF-8.txt -Tpng -o Diff_tree/tree_%zu.png", number_pic);
+    snprintf (name_pic, 16, "tree_%zu.png", number_pic);
 
     Dump_graph_init (node_);
 

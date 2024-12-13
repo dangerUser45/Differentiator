@@ -1,11 +1,11 @@
 #include "Diff.h"
 #include "Eval.h"
+#include "Diff_Dtor.h"
 
 extern FILE* Log_File;
 
-node* Check_and_Create (char* buffer);
-size_t Var_Count_Envelope (node* Node);
-size_t Var_Count (node* Node, size_t* var_num);
+static node* Check_and_Create (char* buffer);
+static size_t Var_Count (node* Node, size_t* var_num);
 
 //==================================================================================================
 /*
@@ -93,7 +93,7 @@ node* Diff (node* Node)
     size_t num_left_sub, num_right_sub = 0;
     if (Node -> type == NUM) return _NUM(0);
 
-    else if (Node -> type == VAR) return _NUM(1) ;
+    else if (Node -> type == VAR) return _NUM(1);
 
     else
         switch ((int)Node -> val)
@@ -163,7 +163,6 @@ size_t Var_Count (node* Node, size_t* var_num)
     return *var_num;
 }
 //==================================================================================================
-
 node* Create_copy_node (node* Node)
 {
     if (!Node) return Node;
@@ -172,29 +171,10 @@ node* Create_copy_node (node* Node)
 
     New_Node -> type  = Node -> type;
     New_Node -> val   = Node -> val;
-    New_Node -> left  = Node -> left;
-    New_Node -> right = Node -> right;
 
-    Create_copy_node (Node -> left);
-    Create_copy_node (Node -> right);
+    New_Node -> left  = Create_copy_node (Node -> left);
+    New_Node -> right = Create_copy_node (Node -> right);
 
     return New_Node;
-}
-//==================================================================================================
-void Const_Folding (node* Node)
-{
-    if (!Node) return;
-
-    if (Node -> type == VAR) return;
-    else if (!Var_Count_Envelope (Node))
-    {
-        val_t value = Eval (Node);
-        node* New_node = Create_node (NUM, value, 0, 0);
-        
-        //Del_tree (Node);
-    }
-    
-    Const_Folding (Node -> left);
-    Const_Folding (Node -> right);
 }
 //==================================================================================================

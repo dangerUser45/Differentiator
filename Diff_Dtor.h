@@ -2,6 +2,4 @@
 
 struct node;
 
-void Dtor_tree (node* Node);
-
- void Del_tree (node* Node); //!!!
+ void Del_tree (node* Node, node** Node_addr);

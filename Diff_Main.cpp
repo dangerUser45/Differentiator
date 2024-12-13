@@ -9,6 +9,7 @@
 #include "Diff_Dump.h"
 #include "LaTeX.h"
 #include "Diff_Dtor.h"
+#include "Diff_Simpl.h"
 
 extern FILE* Log_File;
 extern FILE* Graph_File;
@@ -21,23 +22,25 @@ int main (int argc, char* argv[])
 
     node* Node =  GetGrammatic(diff_data ->onegin->buffer_addr);        
     Dump_tree (Node);
+    Simplification (&Node); 
+    Dump_tree (Node);
 
-    val_t value = Eval(Node);
+    
+    /*val_t value = Eval(Node);
     printf ("Eval value = %" TYPE "\n", value);
 
     node* node_d = Diff(Node);
     Dump_tree (node_d);
+    Simplification (&node_d);
+    Dump_tree (node_d);
 
-    //Const_Folding (Node);
-    //Dump_tree (Node);
 
     //LaTeX_print_expression (Node, node_d);
 
-    Del_tree (Node);
-    //Dtor_tree (node_d);
-    Del_tree (node_d);  
+    Del_tree(Node, &Node);
+    Del_tree(node_d, &node_d);*/
 
-    $(Node); $(node_d);
-    txDisableAutoPause ();  
+    printf ("All Good\n");
+    txDisableAutoPause ();
 }
 //==================================================================================================

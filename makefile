@@ -3,8 +3,8 @@ B        = build_diff/
 Target   = diff
 #-----------------------------------------------------------------------
 
-$(Target):      $(B)Diff_Main.o $(B)Diff_Init.o $(B)Diff_Dtor.o $(B)Diff.o $(B)Diff_Dump.o $(B)Recursive_descent.o $(B)Eval.o $(B)LaTeX.o $(B)TXLib.o $(B)Print.o $(B)Processing.o
-	$(Compiler) $(B)Diff_Main.o $(B)Diff_Init.o $(B)Diff_Dtor.o $(B)Diff.o $(B)Diff_Dump.o $(B)Recursive_descent.o $(B)Eval.o $(B)LaTeX.o $(B)TXLib.o $(B)Print.o $(B)Processing.o -o diff.exe
+$(Target):      $(B)Diff_Main.o $(B)Diff_Init.o $(B)Diff_Dtor.o $(B)Diff_Simpl.o $(B)Diff.o $(B)Diff_Dump.o $(B)Recursive_descent.o $(B)Eval.o $(B)LaTeX.o $(B)TXLib.o $(B)Print.o $(B)Processing.o
+	$(Compiler) $(B)Diff_Main.o $(B)Diff_Init.o $(B)Diff_Dtor.o $(B)Diff_Simpl.o $(B)Diff.o $(B)Diff_Dump.o $(B)Recursive_descent.o $(B)Eval.o $(B)LaTeX.o $(B)TXLib.o $(B)Print.o $(B)Processing.o -o diff.exe
 #-----------------------------------------------------------------------
 
 $(B)Diff_Main.o : Diff_Main.cpp                                  \
@@ -34,10 +34,22 @@ $(B)Diff_Dtor.o : Diff_Dtor.cpp                                  \
 #-----------------------------------------------------------------------
 
 $(B)Diff.o : Diff.cpp                                            \
-		   Diff_Common.h
+		     Diff_Common.h
 	$(Compiler) -c Diff.cpp -o $(B)Diff.o
 				 
 #-----------------------------------------------------------------------
+
+$(B)Diff_Simpl.o : Diff_Simpl.cpp                                \
+				   Diff.h                                        \
+				   Diff_Common.h                                 \
+				   Eval.h                                        \
+				   Diff.h                                        \
+				   Diff_Simpl.h                                  \
+				   Diff_Dtor.h                                   
+	$(Compiler) -c Diff_Simpl.cpp -o $(B)Diff_Simpl.o
+
+#-----------------------------------------------------------------------
+
 
 $(B)Diff_Dump.o : Diff_Dump.cpp                                  \
 				  Diff_Dump.h                                    \

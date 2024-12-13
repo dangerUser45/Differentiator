@@ -1,17 +1,11 @@
 #include "Diff_common.h"
 #include "Diff_Dtor.h"
 
- void Del_tree (node* Node)
+ void Del_tree (node* Node, node** Node_addr)
 {
-	if (Node -> left  != NULL) {Del_tree(Node -> left);  printf ("Im want del node: %p\n", Node ->left); }
-	if (Node -> right != NULL) {Del_tree(Node -> right); printf ("Im want del node: %p\n", Node ->right);}
+	if (Node -> left  != NULL) Del_tree(Node -> left,  &Node -> left);  
+	if (Node -> right != NULL) Del_tree(Node -> right, &Node -> right); 
 
-	free(Node);
+	if (Node != NULL) {free(Node); *Node_addr =  NULL;}
 }
-//==================================================================================================
-void Dtor_tree (node* Node)
-{
-    Del_tree (Node);
-    //Node = NULL;
-}
-//==================================================================================================
+//==================================================================================================    
